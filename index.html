@@ -1,35 +1,33 @@
 <!DOCTYPE html>
-<html lang="en" class="h-full bg-slate-50 text-slate-900">
+<html lang="en" class="h-full bg-slate-50">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Internal Medicine Clinical Rotation Syllabus & Learning Hub</title>
-    <!-- Tailwind CSS -->
+    <title>Internal Medicine Clinical Rotation Syllabus Hub</title>
+    <!-- Tailwind CSS CDN -->
     <script src="https://cdn.tailwindcss.com"></script>
-    <!-- Google Fonts -->
+    <!-- FontAwesome Icons -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <!-- Google Font Inter -->
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Plus+Jakarta+Sans:wght@300;400;500;600;700;800&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
-    <!-- Lucide Icons -->
-    <script src="https://unpkg.com/lucide@latest"></script>
-    
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap" rel="stylesheet">
     <script>
         tailwind.config = {
             darkMode: 'class',
             theme: {
                 extend: {
                     fontFamily: {
-                        sans: ['"Plus Jakarta Sans"', 'sans-serif'],
-                        mono: ['"JetBrains Mono"', 'monospace'],
+                        sans: ['Inter', 'sans-serif'],
                     },
                     colors: {
                         brand: {
-                            50: '#f0fdfa',
-                            100: '#ccfbf1',
-                            500: '#14b8a6',
-                            600: '#0d9488',
-                            700: '#0f766e',
-                            900: '#134e4a',
+                            50: '#f0f7ff',
+                            100: '#e0effe',
+                            500: '#0284c7',
+                            600: '#0369a1',
+                            700: '#075985',
+                            900: '#0c4a6e',
                         }
                     }
                 }
@@ -37,1884 +35,1261 @@
         }
     </script>
     <style>
-        /* Light theme custom scrollbars and visual depth */
-        ::-webkit-scrollbar {
-            width: 8px;
-            height: 8px;
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 6px;
+            height: 6px;
         }
-        ::-webkit-scrollbar-track {
-            background: #f1f5f9;
-        }
-        ::-webkit-scrollbar-thumb {
-            background: #cbd5e1;
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: rgba(0, 0, 0, 0.05);
             border-radius: 4px;
         }
-        ::-webkit-scrollbar-thumb:hover {
-            background: #94a3b8;
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: rgba(0, 0, 0, 0.2);
+            border-radius: 4px;
         }
-        .glass-card {
-            background: rgba(255, 255, 255, 0.9);
-            backdrop-filter: blur(12px);
-            border: 1px solid rgba(226, 232, 240, 0.9);
-        }
-        .glass-card-hover {
-            transition: all 0.25s cubic-bezier(0.4, 0, 0.2, 1);
-        }
-        .glass-card-hover:hover {
-            transform: translateY(-2px);
-            border-color: rgba(13, 148, 136, 0.4);
-            box-shadow: 0 12px 24px -10px rgba(13, 148, 136, 0.15);
-        }
-        .badge-pulse {
-            animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
-        }
-        @keyframes pulse-ring {
-            0%, 100% { opacity: 1; }
-            50% { opacity: 0.4; }
-        }
-
-        /* Printable Report Styles for University Submission */
         @media print {
-            body * {
-                visibility: hidden;
-            }
-            #printable-report-area, #printable-report-area * {
-                visibility: visible;
-            }
-            #printable-report-area {
-                position: absolute;
-                left: 0;
-                top: 0;
-                width: 100%;
-                background: white !important;
-                color: black !important;
-                padding: 20px;
-            }
-            .no-print {
-                display: none !important;
-            }
+            .no-print { display: none !important; }
+            .print-only { display: block !important; }
+            body { background: white !important; color: black !important; }
         }
     </style>
 </head>
-<body class="h-full font-sans antialiased bg-slate-100/80 text-slate-800 selection:bg-teal-500 selection:text-white flex flex-col min-h-screen">
-
-    <!-- Top Navigation Bar -->
-    <header class="sticky top-0 z-40 w-full border-b border-slate-200 bg-white/90 backdrop-blur-md shadow-sm">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-            <div class="flex items-center justify-between h-16">
-                <!-- Brand / Title -->
-                <div class="flex items-center space-x-3">
-                    <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-teal-600 to-cyan-500 flex items-center justify-center text-white font-black text-xl shadow-md shadow-teal-500/20">
-                        <i data-lucide="stethoscope" class="w-6 h-6 stroke-[2.5]"></i>
-                    </div>
-                    <div>
-                        <h1 class="font-bold text-lg leading-tight tracking-tight text-slate-900 flex items-center gap-2">
-                            IM Rotation Master <span class="text-xs font-semibold px-2 py-0.5 rounded-full bg-teal-100 text-teal-800 border border-teal-200">8-Week Guide</span>
-                        </h1>
-                        <p class="text-xs text-slate-500">Clinical Internal Medicine Curriculum & Practical Companion</p>
-                    </div>
-                </div>
-
-                <!-- Global Stats & Quick Actions -->
-                <div class="hidden md:flex items-center space-x-4">
-                    <!-- Student ID Tag for LMS -->
-                    <button onclick="openStudentModal()" class="flex items-center gap-2 px-3 py-1.5 text-xs font-medium text-slate-700 bg-slate-100 hover:bg-slate-200 border border-slate-200 rounded-xl transition-all">
-                        <i data-lucide="user-check" class="w-3.5 h-3.5 text-teal-600"></i>
-                        <span id="nav-student-display">Set Student Credentials</span>
-                    </button>
-
-                    <div class="flex items-center space-x-3 bg-slate-50 px-3.5 py-1.5 rounded-xl border border-slate-200">
-                        <div class="text-xs">
-                            <span class="text-slate-500">Topics:</span>
-                            <span id="header-topics-count" class="font-bold text-teal-700 ml-1">0/0</span>
+<body class="h-full font-sans text-slate-800 bg-slate-50 dark:bg-slate-900 dark:text-slate-100 transition-colors duration-200">
+    <div id="app" class="min-h-screen flex flex-col">
+        <!-- Top Navigation Bar -->
+        <header class="sticky top-0 z-30 bg-white/90 dark:bg-slate-900/90 backdrop-blur border-b border-slate-200 dark:border-slate-800 no-print">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex items-center justify-between h-16">
+                    <div class="flex items-center space-x-3">
+                        <div class="w-10 h-10 rounded-xl bg-gradient-to-tr from-sky-600 to-indigo-600 flex items-center justify-center text-white shadow-md shadow-sky-500/20">
+                            <i class="fa-solid font-bold fa-user-doctor text-xl"></i>
                         </div>
-                        <div class="h-4 w-[1px] bg-slate-200"></div>
-                        <div class="text-xs">
-                            <span class="text-slate-500">Assignments:</span>
-                            <span id="header-assignments-count" class="font-bold text-cyan-700 ml-1">0/8</span>
-                        </div>
-                        <div class="h-4 w-[1px] bg-slate-200"></div>
-                        <div class="w-20 bg-slate-200 h-2 rounded-full overflow-hidden">
-                            <div id="header-progress-bar" class="bg-gradient-to-r from-teal-500 to-cyan-500 h-full transition-all duration-500" style="width: 0%"></div>
+                        <div>
+                            <h1 class="text-lg font-bold bg-gradient-to-r from-sky-700 via-indigo-700 to-blue-800 dark:from-sky-400 dark:to-indigo-300 bg-clip-text text-transparent">
+                                MedRotation Hub
+                            </h1>
+                            <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Internal Medicine Clinical Syllabus</p>
                         </div>
                     </div>
 
-                    <button onclick="openReportModal()" class="flex items-center gap-1.5 px-3 py-2 text-xs font-semibold text-teal-800 bg-teal-50 hover:bg-teal-100 border border-teal-200 rounded-xl shadow-sm transition-all" title="Generate Report for GOALS Submission">
-                        <i data-lucide="file-check-2" class="w-4 h-4 text-teal-600"></i>
-                        <span>LMS Submission Report</span>
-                    </button>
-
-                    <button onclick="openStatsModal()" class="flex items-center gap-2 px-3.5 py-2 text-xs font-semibold text-slate-700 bg-white hover:bg-slate-50 border border-slate-200 rounded-xl shadow-sm transition-all">
-                        <i data-lucide="bar-chart-2" class="w-4 h-4 text-teal-600"></i>
-                        <span>Dashboard</span>
-                    </button>
-
-                    <button onclick="toggleFullscreen()" class="p-2 text-slate-500 hover:text-slate-800 bg-slate-100 rounded-xl transition-all" title="Toggle Fullscreen Mode">
-                        <i data-lucide="maximize" class="w-4 h-4"></i>
-                    </button>
-                </div>
-            </div>
-        </div>
-    </header>
-
-    <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-8 space-y-8">
-        
-        <!-- Welcome & Curriculum Overview Banner -->
-        <section class="relative overflow-hidden rounded-3xl bg-gradient-to-br from-white via-teal-50/40 to-cyan-50/60 border border-teal-100 p-6 md:p-8 shadow-md">
-            <div class="absolute -top-24 -right-24 w-96 h-96 bg-teal-400/10 rounded-full blur-3xl pointer-events-none"></div>
-            <div class="absolute -bottom-24 -left-24 w-96 h-96 bg-cyan-400/10 rounded-full blur-3xl pointer-events-none"></div>
-
-            <div class="relative z-10 space-y-4">
-                <div class="flex flex-wrap items-center justify-between gap-4">
-                    <div class="space-y-1">
-                        <span class="text-xs font-bold tracking-wider text-teal-700 uppercase">Department of Internal Medicine</span>
-                        <h2 class="text-2xl sm:text-3xl font-extrabold text-slate-900 tracking-tight">Clinical Rotation Weekly Map</h2>
-                    </div>
-                    
-                    <!-- Quick Badges -->
-                    <div class="flex flex-wrap gap-2 text-xs">
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 shadow-sm">
-                            <i data-lucide="users" class="w-3.5 h-3.5 text-cyan-600"></i> Weekly TBL
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 shadow-sm">
-                            <i data-lucide="activity" class="w-3.5 h-3.5 text-emerald-600"></i> Weekly CC
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 shadow-sm">
-                            <i data-lucide="message-square" class="w-3.5 h-3.5 text-indigo-600"></i> Weekly CBD
-                        </span>
-                        <span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-lg bg-white border border-slate-200 text-slate-700 shadow-sm">
-                            <i data-lucide="file-check-2" class="w-3.5 h-3.5 text-amber-600"></i> 1 Assignment / Wk
-                        </span>
-                    </div>
-                </div>
-
-                <p class="text-sm text-slate-600 max-w-4xl leading-relaxed">
-                    Each week focuses on one major medical system. While the field of Medicine is dynamic and topic lists are subject to clinical exposure, <strong class="text-teal-800 font-semibold">weekly assignments remain mandatory</strong>. Attend 1 TBL (Team-Based Learning), 1 CC (Clinical Competencies), and 1 CBD (Case-Based Discussion) session weekly to consolidate your knowledge.
-                </p>
-
-                <!-- Disclaimer Notice -->
-                <div class="flex items-start gap-3 p-3.5 rounded-xl bg-amber-50 border border-amber-200 text-xs text-amber-900">
-                    <i data-lucide="alert-circle" class="w-4 h-4 text-amber-600 shrink-0 mt-0.5"></i>
-                    <div>
-                        <strong class="font-bold text-amber-900">Clinical Guide Notice:</strong> This syllabus serves as a dynamic guide. Weekly assignments are fixed and must be submitted by the end of each respective week. Use the interactive tools provided in each card to practice interpretation skills!
-                    </div>
-                </div>
-            </div>
-        </section>
-
-        <!-- Controls & Search Toolbar -->
-        <section class="flex flex-col md:flex-row gap-4 items-stretch md:items-center justify-between">
-            
-            <!-- Search Box -->
-            <div class="relative flex-1 max-w-md">
-                <i data-lucide="search" class="w-4 h-4 text-slate-400 absolute left-3.5 top-1/2 -translate-y-1/2"></i>
-                <input 
-                    type="text" 
-                    id="search-input" 
-                    placeholder="Search topics (e.g. DKA, Dengue, ABG, Stroke, SLE)..."
-                    class="w-full bg-white border border-slate-200 rounded-xl pl-10 pr-4 py-2.5 text-sm text-slate-900 placeholder-slate-400 focus:outline-none focus:ring-2 focus:ring-teal-500/30 focus:border-teal-600 transition-all shadow-sm"
-                    oninput="handleSearch()"
-                >
-                <button id="clear-search-btn" onclick="clearSearch()" class="hidden absolute right-3 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
-                    <i data-lucide="x" class="w-4 h-4"></i>
-                </button>
-            </div>
-
-            <!-- View Toggles & Filters -->
-            <div class="flex flex-wrap items-center gap-2">
-                <!-- System Category Filter -->
-                <select id="filter-system" onchange="applyFilters()" class="bg-white border border-slate-200 rounded-xl px-3 py-2 text-xs text-slate-700 focus:outline-none focus:ring-2 focus:ring-teal-500 shadow-sm">
-                    <option value="all">All Systems (Weeks 1 - 8)</option>
-                    <option value="incomplete">Incomplete Assignments</option>
-                    <option value="completed">Completed Assignments</option>
-                </select>
-
-                <!-- View Switcher (Cards vs Timeline vs Quick Index) -->
-                <div class="flex bg-slate-200/80 p-1 rounded-xl border border-slate-200">
-                    <button id="view-btn-grid" onclick="setViewMode('grid')" class="px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-600 text-white shadow-sm transition-all flex items-center gap-1.5">
-                        <i data-lucide="layout-grid" class="w-3.5 h-3.5"></i> Grid
-                    </button>
-                    <button id="view-btn-timeline" onclick="setViewMode('timeline')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5">
-                        <i data-lucide="list-tree" class="w-3.5 h-3.5"></i> Timeline
-                    </button>
-                    <button id="view-btn-index" onclick="setViewMode('index')" class="px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5">
-                        <i data-lucide="table-properties" class="w-3.5 h-3.5"></i> Topic Index
-                    </button>
-                </div>
-            </div>
-        </section>
-
-        <!-- Main Content Area -->
-        <section id="syllabus-container">
-            <!-- Grid View (Default) -->
-            <div id="grid-view" class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-6"></div>
-
-            <!-- Timeline View (Hidden initially) -->
-            <div id="timeline-view" class="hidden relative border-l-2 border-slate-300 ml-4 md:ml-8 pl-6 space-y-8"></div>
-
-            <!-- Topic Index View (Hidden initially) -->
-            <div id="index-view" class="hidden glass-card rounded-2xl p-6 overflow-x-auto shadow-sm"></div>
-        </section>
-
-    </main>
-
-    <!-- Footer -->
-    <footer class="mt-auto border-t border-slate-200 bg-white py-6">
-        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 text-center text-xs text-slate-500 space-y-1">
-            <p class="font-medium text-slate-600">Internal Medicine Clinical Rotation Dashboard &bull; Designed for Medical Students</p>
-            <p class="text-slate-400">Dynamic content subject to clinical posting variations. Always refer to official departmental guidelines.</p>
-        </div>
-    </footer>
-
-    <!-- WEEK DETAIL & CLINICAL TOOL MODAL -->
-    <div id="week-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
-        <div class="glass-card w-full max-w-4xl max-h-[90vh] rounded-3xl border border-slate-200 shadow-2xl flex flex-col overflow-hidden bg-white">
-            
-            <!-- Modal Header -->
-            <div id="modal-header" class="p-6 border-b border-slate-200 flex items-start justify-between bg-slate-50/80">
-                <div class="space-y-1">
-                    <div class="flex items-center gap-2">
-                        <span id="modal-week-badge" class="px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide"></span>
-                        <span id="modal-system-title" class="text-xs font-medium text-slate-500"></span>
-                    </div>
-                    <h3 id="modal-title" class="text-2xl font-bold text-slate-900"></h3>
-                </div>
-                <button onclick="closeWeekModal()" class="p-2 rounded-xl text-slate-400 hover:text-slate-700 hover:bg-slate-200/60 transition-all">
-                    <i data-lucide="x" class="w-6 h-6"></i>
-                </button>
-            </div>
-
-            <!-- Modal Body Tabs -->
-            <div class="border-b border-slate-200 px-6 bg-slate-50/40 flex space-x-6 text-sm font-semibold">
-                <button id="modal-tab-topics" onclick="switchModalTab('topics')" class="py-3 text-teal-700 border-b-2 border-teal-600 flex items-center gap-2">
-                    <i data-lucide="book-open" class="w-4 h-4"></i> Topics & Mastery
-                </button>
-                <button id="modal-tab-assignment" onclick="switchModalTab('assignment')" class="py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-800 flex items-center gap-2">
-                    <i data-lucide="file-text" class="w-4 h-4"></i> Assignment Hub
-                </button>
-                <button id="modal-tab-tool" onclick="switchModalTab('tool')" class="py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-800 flex items-center gap-2">
-                    <i data-lucide="calculator" class="w-4 h-4"></i> Interactive Diagnostic Tool
-                </button>
-                <button id="modal-tab-notes" onclick="switchModalTab('notes')" class="py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-800 flex items-center gap-2">
-                    <i data-lucide="edit-3" class="w-4 h-4"></i> Study Notes
-                </button>
-            </div>
-
-            <!-- Modal Content Area -->
-            <div class="p-6 overflow-y-auto space-y-6 flex-1 bg-slate-50/30" id="modal-body">
-                
-                <!-- TAB 1: Topics & Mastery -->
-                <div id="tab-content-topics" class="space-y-6">
-                    <div>
-                        <div class="flex items-center justify-between mb-3">
-                            <h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                                <i data-lucide="check-square" class="w-4 h-4 text-teal-600"></i> Core Topics Checklist
-                            </h4>
-                            <span id="modal-topics-progress" class="text-xs font-mono text-teal-700 font-bold"></span>
-                        </div>
-                        <div id="modal-topics-list" class="grid grid-cols-1 sm:grid-cols-2 gap-2.5"></div>
-                    </div>
-
-                    <!-- Weekly Sessions Checklist -->
-                    <div class="pt-4 border-t border-slate-200">
-                        <h4 class="text-sm font-bold uppercase tracking-wider text-slate-500 mb-3 flex items-center gap-2">
-                            <i data-lucide="calendar" class="w-4 h-4 text-cyan-600"></i> Mandatory Weekly Teaching Sessions
-                        </h4>
-                        <div class="grid grid-cols-1 sm:grid-cols-3 gap-3" id="modal-sessions-container"></div>
-                    </div>
-                </div>
-
-                <!-- TAB 2: Assignment Hub -->
-                <div id="tab-content-assignment" class="hidden space-y-6">
-                    <div class="p-5 rounded-2xl bg-teal-50/80 border border-teal-200 space-y-4">
-                        <div class="flex items-start justify-between">
-                            <div>
-                                <span class="text-xs font-bold text-teal-800 uppercase tracking-wider">Required Submission</span>
-                                <h4 id="modal-assignment-name" class="text-xl font-bold text-slate-900 mt-1"></h4>
-                            </div>
-                            <button id="modal-assignment-toggle" onclick="toggleCurrentAssignmentStatus()" class="px-4 py-2 rounded-xl text-xs font-bold transition-all flex items-center gap-2 shadow-sm"></button>
-                        </div>
-                        <p id="modal-assignment-desc" class="text-sm text-slate-700 leading-relaxed"></p>
-                    </div>
-
-                    <!-- Step-by-Step Approach Guide -->
-                    <div class="space-y-3">
-                        <h5 class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                            <i data-lucide="compass" class="w-4 h-4 text-indigo-600"></i> Clinical Approach Guidelines
-                        </h5>
-                        <div id="modal-assignment-steps" class="space-y-2 text-xs text-slate-700"></div>
-                    </div>
-                </div>
-
-                <!-- TAB 3: Interactive Diagnostic Tool -->
-                <div id="tab-content-tool" class="hidden space-y-4">
-                    <div id="interactive-tool-container" class="p-5 rounded-2xl bg-white border border-slate-200 shadow-sm"></div>
-                </div>
-
-                <!-- TAB 4: Study Notes -->
-                <div id="tab-content-notes" class="hidden space-y-4">
-                    <div class="flex items-center justify-between">
-                        <label for="modal-notes-input" class="text-xs font-bold uppercase tracking-wider text-slate-500 flex items-center gap-2">
-                            <i data-lucide="pen-tool" class="w-4 h-4 text-amber-600"></i> Personal Rotation Notes
-                        </label>
-                        <span class="text-xs text-slate-400">Auto-saved locally</span>
-                    </div>
-                    <textarea 
-                        id="modal-notes-input" 
-                        rows="8" 
-                        placeholder="Write down ward pearls, senior tips, high-yield cases seen during this week..."
-                        class="w-full bg-white border border-slate-200 rounded-xl p-4 text-sm text-slate-800 focus:outline-none focus:ring-2 focus:ring-teal-500 font-mono resize-none leading-relaxed shadow-sm"
-                        oninput="saveWeekNotes()"
-                    ></textarea>
-                </div>
-
-            </div>
-
-            <!-- Modal Footer -->
-            <div class="p-4 border-t border-slate-200 bg-slate-50/80 flex items-center justify-between text-xs text-slate-500">
-                <span id="modal-footer-status"></span>
-                <button onclick="closeWeekModal()" class="px-5 py-2 rounded-xl bg-slate-800 hover:bg-slate-900 text-white font-semibold transition-all shadow-sm">
-                    Done
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- DASHBOARD & PROGRESS MODAL -->
-    <div id="stats-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 sm:p-6">
-        <div class="glass-card w-full max-w-2xl rounded-3xl border border-slate-200 p-6 space-y-6 bg-white shadow-2xl">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-4">
-                <div class="flex items-center gap-3">
-                    <div class="p-2.5 rounded-xl bg-teal-100 text-teal-700 border border-teal-200">
-                        <i data-lucide="trophy" class="w-6 h-6"></i>
-                    </div>
-                    <div>
-                        <h3 class="text-xl font-bold text-slate-900">Rotation Progress Analytics</h3>
-                        <p class="text-xs text-slate-500">Track your overall completion across all 8 weeks</p>
-                    </div>
-                </div>
-                <button onclick="closeStatsModal()" class="p-2 text-slate-400 hover:text-slate-700">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-
-            <!-- Stats Overview Grid -->
-            <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-                    <span class="text-2xl font-black text-teal-700" id="dash-topics-pct">0%</span>
-                    <p class="text-xs text-slate-500 mt-1">Topics Mastered</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-                    <span class="text-2xl font-black text-cyan-700" id="dash-assignments-pct">0/8</span>
-                    <p class="text-xs text-slate-500 mt-1">Assignments Submitted</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-                    <span class="text-2xl font-black text-indigo-700" id="dash-tbl-pct">0/8</span>
-                    <p class="text-xs text-slate-500 mt-1">TBL Sessions</p>
-                </div>
-                <div class="p-4 rounded-2xl bg-slate-50 border border-slate-200 text-center">
-                    <span class="text-2xl font-black text-emerald-700" id="dash-cbd-pct">0/16</span>
-                    <p class="text-xs text-slate-500 mt-1">CC & CBD Sessions</p>
-                </div>
-            </div>
-
-            <!-- Progress Bar Breakdown -->
-            <div class="space-y-3 p-4 rounded-2xl bg-slate-50 border border-slate-200">
-                <div class="flex justify-between text-xs font-bold">
-                    <span class="text-slate-700">Total Rotation Mastery</span>
-                    <span id="dash-overall-pct" class="text-teal-700">0%</span>
-                </div>
-                <div class="w-full bg-slate-200 h-3 rounded-full overflow-hidden">
-                    <div id="dash-overall-bar" class="bg-gradient-to-r from-teal-500 via-cyan-500 to-indigo-500 h-full transition-all duration-700" style="width: 0%"></div>
-                </div>
-            </div>
-
-            <!-- Actions -->
-            <div class="flex items-center justify-between pt-2">
-                <button onclick="confirmResetProgress()" class="text-xs text-rose-600 hover:text-rose-800 hover:underline flex items-center gap-1 font-medium">
-                    <i data-lucide="rotate-ccw" class="w-3.5 h-3.5"></i> Reset All Saved Progress
-                </button>
-                <div class="flex items-center gap-2">
-                    <button onclick="exportProgressJSON()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 flex items-center gap-1">
-                        <i data-lucide="download" class="w-3.5 h-3.5"></i> Export Backup
-                    </button>
-                    <button onclick="triggerImportJSON()" class="px-3 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-slate-700 font-semibold text-xs border border-slate-200 flex items-center gap-1">
-                        <i data-lucide="upload" class="w-3.5 h-3.5"></i> Restore Backup
-                    </button>
-                    <input type="file" id="import-file-input" class="hidden" accept=".json" onchange="importProgressJSON(event)">
-                    <button onclick="closeStatsModal()" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-semibold text-xs transition-all shadow-sm">
-                        Close
-                    </button>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <!-- STUDENT CREDENTIALS MODAL -->
-    <div id="student-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4">
-        <div class="glass-card w-full max-w-md rounded-3xl border border-slate-200 p-6 space-y-5 bg-white shadow-2xl">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-3">
-                <h3 class="text-lg font-bold text-slate-900 flex items-center gap-2">
-                    <i data-lucide="user" class="w-5 h-5 text-teal-600"></i> Student Info for GOALS
-                </h3>
-                <button onclick="closeStudentModal()" class="text-slate-400 hover:text-slate-700">
-                    <i data-lucide="x" class="w-5 h-5"></i>
-                </button>
-            </div>
-            <div class="space-y-4 text-xs">
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Full Name:</label>
-                    <input type="text" id="student-name-input" placeholder="e.g. Ahmad Bin Zulkifli" class="w-full p-2.5 rounded-xl border border-slate-300 text-slate-900 focus:ring-2 focus:ring-teal-500 outline-none">
-                </div>
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Matric / Student ID Number:</label>
-                    <input type="text" id="student-id-input" placeholder="e.g. 1210492" class="w-full p-2.5 rounded-xl border border-slate-300 text-slate-900 focus:ring-2 focus:ring-teal-500 outline-none">
-                </div>
-                <div>
-                    <label class="block font-semibold text-slate-700 mb-1">Rotation Group / Posting Batch:</label>
-                    <input type="text" id="student-group-input" placeholder="e.g. Group B2 - Internal Medicine" class="w-full p-2.5 rounded-xl border border-slate-300 text-slate-900 focus:ring-2 focus:ring-teal-500 outline-none">
-                </div>
-            </div>
-            <div class="flex justify-end gap-2 pt-2">
-                <button onclick="saveStudentCredentials()" class="w-full py-2.5 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs shadow-sm">
-                    Save Credentials
-                </button>
-            </div>
-        </div>
-    </div>
-
-    <!-- LMS SUBMISSION REPORT MODAL -->
-    <div id="report-modal" class="fixed inset-0 z-50 hidden bg-slate-900/50 backdrop-blur-sm flex items-center justify-center p-4 overflow-y-auto">
-        <div class="glass-card w-full max-w-3xl rounded-3xl border border-slate-200 p-6 space-y-6 bg-white shadow-2xl my-8">
-            <div class="flex items-center justify-between border-b border-slate-200 pb-4 no-print">
-                <div>
-                    <h3 class="text-xl font-bold text-slate-900">University GOALS Submission Report</h3>
-                    <p class="text-xs text-slate-500">Official progress summary ready for printing or PDF export</p>
-                </div>
-                <div class="flex items-center gap-2">
-                    <button onclick="printReport()" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white font-bold text-xs flex items-center gap-2 shadow-sm">
-                        <i data-lucide="printer" class="w-4 h-4"></i> Print / Save as PDF
-                    </button>
-                    <button onclick="closeReportModal()" class="p-2 text-slate-400 hover:text-slate-700">
-                        <i data-lucide="x" class="w-5 h-5"></i>
-                    </button>
-                </div>
-            </div>
-
-            <!-- Printable Body -->
-            <div id="printable-report-area" class="space-y-6 text-slate-900">
-                <div class="border-b-2 border-slate-800 pb-4 flex justify-between items-start">
-                    <div>
-                        <h2 class="text-2xl font-black text-slate-900">DEPARTMENT OF INTERNAL MEDICINE</h2>
-                        <p class="text-sm font-semibold text-slate-600">8-Week Clinical Rotation Learning Completion Record</p>
-                    </div>
-                    <div class="text-right text-xs text-slate-500">
-                        <p id="report-date-stamp"></p>
-                        <p class="font-mono text-teal-700 font-bold">GOALS VERIFIED RECORD</p>
-                    </div>
-                </div>
-
-                <div class="grid grid-cols-3 gap-4 p-4 rounded-xl bg-slate-50 border border-slate-200 text-xs">
-                    <div>
-                        <span class="text-slate-500 block">Student Name:</span>
-                        <strong id="report-student-name" class="text-slate-900 text-sm">Not Provided</strong>
-                    </div>
-                    <div>
-                        <span class="text-slate-500 block">Matric / ID:</span>
-                        <strong id="report-student-id" class="text-slate-900 text-sm">Not Provided</strong>
-                    </div>
-                    <div>
-                        <span class="text-slate-500 block">Group / Posting:</span>
-                        <strong id="report-student-group" class="text-slate-900 text-sm">Not Provided</strong>
-                    </div>
-                </div>
-
-                <div class="space-y-2">
-                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-700">Rotation Weekly Breakdown</h4>
-                    <table class="w-full text-left text-xs border-collapse border border-slate-300">
-                        <thead>
-                            <tr class="bg-slate-100 text-slate-800 border-b border-slate-300 font-bold">
-                                <th class="p-2.5 border-r border-slate-300">Week & System</th>
-                                <th class="p-2.5 border-r border-slate-300">Topics Mastered</th>
-                                <th class="p-2.5 border-r border-slate-300">TBL / CC / CBD</th>
-                                <th class="p-2.5">Weekly Assignment</th>
-                            </tr>
-                        </thead>
-                        <tbody id="report-table-body" class="divide-y divide-slate-300"></tbody>
-                    </table>
-                </div>
-
-                <div class="p-4 rounded-xl bg-teal-50 border border-teal-200 flex justify-between items-center text-xs">
-                    <div>
-                        <span class="font-bold text-teal-900 block">Overall Rotation Completion Rate:</span>
-                        <p class="text-slate-600">Calculated based on verified topic checklists and submitted assignments.</p>
-                    </div>
-                    <div class="text-2xl font-black text-teal-800" id="report-overall-score">0%</div>
-                </div>
-
-                <div class="pt-8 border-t border-slate-300 grid grid-cols-2 gap-8 text-xs">
-                    <div class="space-y-8">
-                        <p class="text-slate-500">Student Signature: _______________________</p>
-                    </div>
-                    <div class="space-y-8">
-                        <p class="text-slate-500">Clinical Supervisor Signature: _______________________</p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <script>
-        const SYLLABUS_DATA = [
-            {
-                week: 1,
-                system: "Nephrology",
-                themeColor: "emerald",
-                icon: "droplet",
-                bgGradient: "from-emerald-500/10 to-teal-500/5",
-                borderColor: "border-emerald-200",
-                badgeBg: "bg-emerald-100 text-emerald-800 border-emerald-300",
-                topics: [
-                    "UTI (Urinary Tract Infection)",
-                    "AKI (Acute Kidney Injury)",
-                    "CKD (Chronic Kidney Disease)",
-                    "Diabetic Nephropathy",
-                    "PCKD (Polycystic Kidney Disease)",
-                    "Glomerulonephritis",
-                    "Nephrotic vs Nephritic Syndrome",
-                    "Renal Replacement Therapy (Dialysis/Transplant)"
-                ],
-                assignment: {
-                    title: "Renal profile interpretation and UFEME",
-                    description: "Comprehensive evaluation of serum urea, electrolytes, creatinine, eGFR, along with Urine Full Examination and Microscopic Evaluation (UFEME).",
-                    guidelines: [
-                        "1. Differentiate Prerenal, Intrinsic, and Postrenal AKI using Urea:Creatinine ratio & Urine Na.",
-                        "2. Interpret Nephrotic (heavy proteinuria >3.5g/day, hypoalbuminemia, edema) vs Nephritic (hematuria, RBC casts, HTN, oliguria) urine dipstick/UFEME.",
-                        "3. Classify CKD staging according to KDIGO guidelines using eGFR and Albuminuria categories.",
-                        "4. Identify indication flags for urgent hemodialysis (AEIOU: Acidosis, Electrolytes/Hyperkalemia, Ingestion, Overload, Uremia)."
-                    ]
-                },
-                toolType: "nephro"
-            },
-            {
-                week: 2,
-                system: "Cardiology",
-                themeColor: "rose",
-                icon: "heart-pulse",
-                bgGradient: "from-rose-500/10 to-red-500/5",
-                borderColor: "border-rose-200",
-                badgeBg: "bg-rose-100 text-rose-800 border-rose-300",
-                topics: [
-                    "Ischaemic Heart Disease / ACS (STEMI/NSTEMI/Unstable Angina)",
-                    "Arrhythmias (AF, VT, VF, SVT, AV Blocks)",
-                    "Heart Failure (HFrEF, HFpEF, Acute Decompensated HF)",
-                    "Hypertension & Secondary Causes",
-                    "Rheumatic Heart Disease",
-                    "Valvular Disease (AS, AR, MS, MR)",
-                    "Infective Endocarditis (Duke Criteria)",
-                    "Cardiomyopathy (Dilated, Hypertrophic, Restrictive)"
-                ],
-                assignment: {
-                    title: "ECG interpretation",
-                    description: "Systematic 7-step analysis of 12-lead Electrocardiograms including rate, rhythm, axis, cardiac ischemic changes, and blocks.",
-                    guidelines: [
-                        "1. Rate & Rhythm: Calculate HR (300 / R-R big squares); identify sinus rhythm vs AF / SVT.",
-                        "2. Cardiac Axis: Check Lead I and aVF (Normal, LAD, RAD).",
-                        "3. Intervals: PR interval (120-200ms), QRS duration (<120ms), QTc interval.",
-                        "4. Ischemic Changes: ST elevation/depression, T-wave inversion, pathological Q waves in contiguous leads."
-                    ]
-                },
-                toolType: "cardio"
-            },
-            {
-                week: 3,
-                system: "Haematology + Infectious Disease",
-                themeColor: "purple",
-                icon: "bug",
-                bgGradient: "from-purple-500/10 to-indigo-500/5",
-                borderColor: "border-purple-200",
-                badgeBg: "bg-purple-100 text-purple-800 border-purple-300",
-                subSystems: [
-                    {
-                        name: "Haematology",
-                        topics: [
-                            "Anaemia (Microcytic, Normocytic, Macrocytic)",
-                            "Thalassaemia Trait & Disease",
-                            "Haemophilia A/B & Bleeding Disorders",
-                            "ITP (Immune Thrombocytopenia)",
-                            "Leukaemia (AML, ALL, CML, CLL)",
-                            "Myeloproliferative Disorders (Polycythemia Vera, ET, MF)",
-                            "Lymphoma (Hodgkin's & Non-Hodgkin's)",
-                            "Multiple Myeloma (CRAB criteria)",
-                            "DIC (Disseminated Intravascular Coagulation)",
-                            "FBC / FBP / Coagulation Interpretation",
-                            "Anticoagulant Pharmacology (Warfarin, DOACs, Heparin)"
-                        ]
-                    },
-                    {
-                        name: "Infectious Disease",
-                        topics: [
-                            "Dengue Fever & Dengue Hemorrhagic Fever",
-                            "Leptospirosis",
-                            "Tuberculosis (TB)",
-                            "Malaria",
-                            "Typhoid Fever",
-                            "Cholera",
-                            "Melioidosis",
-                            "Clostridioides difficile",
-                            "HIV / STDs",
-                            "PUO (Pyrexia of Unknown Origin)"
-                        ]
-                    }
-                ],
-                assignment: {
-                    title: "Interpreting FBC (Full Blood Count)",
-                    description: "Complete diagnostic breakdown of Red Blood Cells, Hemoglobin, MCV, White Blood Cells, Platelets, Peripheral Blood Film (PBF), and Coagulation.",
-                    guidelines: [
-                        "1. RBC Indices: Evaluate Hb & MCV (Microcytic <80, Normocytic 80-100, Macrocytic >100). Check RDW & Ferritin.",
-                        "2. WBC Differential: Neutrophilia (bacterial/inflammation), Lymphocytosis (viral/CLL), Eosinophilia (allergy/parasite).",
-                        "3. Platelets & Coagulation: Thrombocytopenia patterns, PT/INR, aPTT prolongation.",
-                        "4. Peripheral Blood Film: Target cells, pencil cells, blasts, hypersegmented neutrophils, schistocytes."
-                    ]
-                },
-                toolType: "haem_id"
-            },
-            {
-                week: 4,
-                system: "Respiratory",
-                themeColor: "sky",
-                icon: "wind",
-                bgGradient: "from-sky-500/10 to-blue-500/5",
-                borderColor: "border-sky-200",
-                badgeBg: "bg-sky-100 text-sky-800 border-sky-300",
-                topics: [
-                    "Asthma (Acute Exacerbation & Maintenance)",
-                    "COPD (GOLD Guidelines)",
-                    "Cor Pulmonale",
-                    "Respiratory Failure (Type 1 Hypoxemic vs Type 2 Hypercapnic)",
-                    "Pneumonia (CAP, HAP, CURB-65 Score)",
-                    "Pulmonary Tuberculosis (PTB)",
-                    "Pulmonary Embolism (Wells Score & PERC)",
-                    "Pleural Disease (Effusion - Light's Criteria, Pneumothorax)",
-                    "ILD (Interstitial Lung Disease)",
-                    "Lung Cancer",
-                    "OSA (Obstructive Sleep Apnea)"
-                ],
-                assignment: {
-                    title: "ABG and CXR interpretation",
-                    description: "Arterial Blood Gas Analysis (Acid-base, compensation, Anion Gap) combined with systematic Chest X-ray evaluation.",
-                    guidelines: [
-                        "1. ABG Step 1: Check pH (Acidemia <7.35, Alkalemia >7.45).",
-                        "2. ABG Step 2: Determine Primary Driver (PaCO2 vs HCO3) & Compensation status.",
-                        "3. CXR Systematic ABCDE: Airway, Bones/Soft tissue, Cardiac silhouette, Diaphragm, Effusions/Lung fields.",
-                        "4. Light's Criteria for Pleural Fluid: Exudate if Protein ratio >0.5 or LDH ratio >0.6."
-                    ]
-                },
-                toolType: "respo"
-            },
-            {
-                week: 5,
-                system: "Gastroenterology & Hepatology",
-                themeColor: "amber",
-                icon: "utensils",
-                bgGradient: "from-amber-500/10 to-yellow-500/5",
-                borderColor: "border-amber-200",
-                badgeBg: "bg-amber-100 text-amber-800 border-amber-300",
-                topics: [
-                    "Peptic Ulcer Disease (PUD & H. pylori)",
-                    "GERD (Gastroesophageal Reflux Disease)",
-                    "Gastroenteritis",
-                    "IBD (Ulcerative Colitis, Crohn's) / IBS",
-                    "Jaundice (Pre-hepatic, Hepatic, Post-hepatic/Obstructive)",
-                    "Hepatitis (Viral A/B/C/E, Autoimmune, Drug-Induced)",
-                    "ALD / NAFLD (MASLD)",
-                    "Cirrhosis & Portal Hypertension (Varices, Ascites)",
-                    "HCC (Hepatocellular Carcinoma)",
-                    "Hepatic Encephalopathy (West Haven Criteria)",
-                    "Acute & Chronic Liver Failure",
-                    "Acute & Chronic Pancreatitis"
-                ],
-                assignment: {
-                    title: "LFT Interpretation",
-                    description: "Distinguishing Hepatocellular vs Cholestatic/Obstructive liver injury, Synthetic liver function, and Bilirubin fractionation.",
-                    guidelines: [
-                        "1. Injury Pattern: Hepatocellular (ALT/AST predominance) vs Cholestatic (ALP/GGT predominance).",
-                        "2. R-Factor Ratio: (ALT/ULN) / (ALP/ULN) -> >5 Hepatocellular, <2 Cholestatic, 2-5 Mixed.",
-                        "3. Synthetic Capacity: Albumin, Prothrombin Time (PT/INR).",
-                        "4. Bilirubin Fractionation: Conjugated (Direct) vs Unconjugated (Indirect) hyperbilirubinemia."
-                    ]
-                },
-                toolType: "gastro"
-            },
-            {
-                week: 6,
-                system: "Endocrinology",
-                themeColor: "orange",
-                icon: "zap",
-                bgGradient: "from-orange-500/10 to-amber-500/5",
-                borderColor: "border-orange-200",
-                badgeBg: "bg-orange-100 text-orange-800 border-orange-300",
-                topics: [
-                    "Diabetes Mellitus (Type 1, Type 2, Gestational)",
-                    "Metabolic Syndrome",
-                    "Dyslipidaemia",
-                    "Thyroid Disease (Thyrotoxicosis, Hypothyroidism, Thyroiditis)",
-                    "Parathyroid Disease & Calcium Homeostasis",
-                    "Cushing's Syndrome / Adrenal Insufficiency (Addisonian Crisis)",
-                    "Hyperaldosteronism (Conn's Syndrome)",
-                    "Phaeochromocytoma",
-                    "Acromegaly",
-                    "Pituitary Disease (Adenoma, Hypopituitarism, DI/SIADH)",
-                    "Oral Hypoglycaemics & Insulin Pharmacology"
-                ],
-                assignment: {
-                    title: "Diabetes Emergencies",
-                    description: "Differential diagnosis, acute emergency management protocols for DKA (Diabetic Ketoacidosis) and HHS (Hyperglycaemic Hyperosmolar State).",
-                    guidelines: [
-                        "1. Diagnostic Criteria: DKA (Glucose >11 mmol/L or known DM, pH <7.30, HCO3 <18, Ketones +) vs HHS (Glucose >30, Osmolality >320, No severe ketoacidosis).",
-                        "2. Fluid Resuscitation: Initial 0.9% Normal Saline challenge, monitor fluid balance.",
-                        "3. Insulin Therapy: Fixed rate IV insulin infusion (0.1 units/kg/hr); DO NOT give if K+ <3.5 mmol/L.",
-                        "4. Potassium Management: Monitor hourly, replace K+ aggressively as insulin shifts K+ intracellularly."
-                    ]
-                },
-                toolType: "endo"
-            },
-            {
-                week: 7,
-                system: "Rheumatology, Dermatology & Neurology",
-                themeColor: "indigo",
-                icon: "brain",
-                bgGradient: "from-indigo-500/10 to-violet-500/5",
-                borderColor: "border-indigo-200",
-                badgeBg: "bg-indigo-100 text-indigo-800 border-indigo-300",
-                subSystems: [
-                    {
-                        name: "Rheumatology",
-                        topics: [
-                            "SLE (Systemic Lupus Erythematosus)",
-                            "Osteoarthritis (OA)",
-                            "Gout & Pseudogout",
-                            "Rheumatoid Arthritis (RA)",
-                            "Scleroderma / Systemic Sclerosis",
-                            "Seronegative Spondyloarthropathies (Ankylosing Spondylitis, PsA)"
-                        ]
-                    },
-                    {
-                        name: "Dermatology",
-                        topics: [
-                            "Psoriasis",
-                            "Eczema / Atopic Dermatitis",
-                            "Bullous Diseases (Pemphigus Vulgaris, Bullous Pemphigoid)",
-                            "Scabies & Infestations",
-                            "Cutaneous Signs of Systemic Disease"
-                        ]
-                    },
-                    {
-                        name: "Neurology",
-                        topics: [
-                            "Ischemic & Hemorrhagic Stroke",
-                            "Headache Disorders (Migraine, Tension, Cluster, Red Flags)",
-                            "Acute Confusional State / Delirium",
-                            "Meningitis / Encephalitis",
-                            "Epilepsy & Seizures",
-                            "Bell's Palsy",
-                            "Coma & Altered Sensorium",
-                            "Parkinsonism & Movement Disorders",
-                            "Myasthenia Gravis",
-                            "Peripheral Neuropathy",
-                            "GBS (Guillain-Barré Syndrome) / CIDP"
-                        ]
-                    }
-                ],
-                assignment: {
-                    title: "Approach to headache",
-                    description: "Structured diagnostic pathway for acute vs chronic headache, identifying secondary life-threatening headaches using SNOOP4 red flag criteria.",
-                    guidelines: [
-                        "1. Red Flags (SNOOP4): Systemic symptoms/fever, Neurological deficits, Onset sudden (Thunderclap), Older age (>50), Pattern change/Papilledema.",
-                        "2. Primary vs Secondary: Primary (Migraine, Tension, Cluster) vs Secondary (SAH, Meningitis, Temporal Arteritis, SOL, CVT).",
-                        "3. Workup Indications: Non-contrast Brain CT for sudden thunderclap or focal deficits; LP for suspected SAH or meningitis.",
-                        "4. Acute vs Prophylactic Treatment strategies."
-                    ]
-                },
-                toolType: "rheum_neuro"
-            },
-            {
-                week: 8,
-                system: "Emergency Medicine Consolidation",
-                themeColor: "red",
-                icon: "siren",
-                bgGradient: "from-red-500/10 to-rose-500/5",
-                borderColor: "border-red-200",
-                badgeBg: "bg-red-100 text-red-800 border-red-300",
-                topics: [
-                    "Shock (Hypovolemic, Cardiogenic, Septic, Anaphylactic, Neurogenic)",
-                    "Acute Pulmonary Oedema",
-                    "Acute Coronary Syndromes Consolidation",
-                    "Acute GI Bleeding (Upper vs Lower)",
-                    "Coma & GCS Evaluation",
-                    "Status Epilepticus & Acute Asthma (Status Asthmaticus)",
-                    "Hypertensive Crisis (Urgency vs Emergency)",
-                    "DKA / HHS Consolidation"
-                ],
-                assignment: {
-                    title: "Status Asthmaticus",
-                    description: "Emergency recognition, severity grading (Moderate, Severe, Life-threatening), and escalation protocol for acute severe asthma.",
-                    guidelines: [
-                        "1. Recognize Life-Threatening Features: Silent chest, cyanosis, PEFR <33%, bradycardia, exhaustion, confusion.",
-                        "2. Immediate Resuscitation: High-flow Oxygen (target SpO2 94-98%), continuous SABA nebulization (Salbutamol) + Ipratropium.",
-                        "3. Systemic Corticosteroids: Early IV Hydrocortisone or Oral Prednisolone.",
-                        "4. Escalation: Single dose IV Magnesium Sulfate (2g over 20 min), ICU transfer, preparation for intubation if deteriorating."
-                    ]
-                },
-                toolType: "emerg"
-            }
-        ];
-
-        const STORAGE_KEY = 'IM_ROTATION_USER_DATA_V1';
-        
-        let state = {
-            viewMode: 'grid',
-            searchQuery: '',
-            filterSystem: 'all',
-            completedTopics: {},
-            completedAssignments: {},
-            completedSessions: {},
-            notes: {},
-            activeModalWeek: null,
-            studentInfo: {
-                name: '',
-                id: '',
-                group: ''
-            }
-        };
-
-        function loadState() {
-            try {
-                const saved = localStorage.getItem(STORAGE_KEY);
-                if (saved) {
-                    const parsed = JSON.parse(saved);
-                    state = { ...state, ...parsed };
-                }
-            } catch (e) {
-                console.error("Error loading local storage:", e);
-            }
-            updateStudentDisplay();
-        }
-
-        function saveState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                    completedTopics: state.completedTopics,
-                    completedAssignments: state.completedAssignments,
-                    completedSessions: state.completedSessions,
-                    notes: state.notes,
-                    studentInfo: state.studentInfo
-                }));
-            } catch (e) {
-                console.error("Error saving to local storage:", e);
-            }
-            updateHeaderStats();
-            updateStudentDisplay();
-        }
-
-        function updateStudentDisplay() {
-            const display = document.getElementById('nav-student-display');
-            if (display) {
-                if (state.studentInfo && state.studentInfo.name) {
-                    display.innerText = `${state.studentInfo.name} (${state.studentInfo.id || 'No ID'})`;
-                } else {
-                    display.innerText = 'Set Student Credentials';
-                }
-            }
-        }
-
-        function openStudentModal() {
-            document.getElementById('student-name-input').value = state.studentInfo?.name || '';
-            document.getElementById('student-id-input').value = state.studentInfo?.id || '';
-            document.getElementById('student-group-input').value = state.studentInfo?.group || '';
-            document.getElementById('student-modal').classList.remove('hidden');
-        }
-
-        function closeStudentModal() {
-            document.getElementById('student-modal').classList.add('hidden');
-        }
-
-        function saveStudentCredentials() {
-            state.studentInfo = {
-                name: document.getElementById('student-name-input').value.trim(),
-                id: document.getElementById('student-id-input').value.trim(),
-                group: document.getElementById('student-group-input').value.trim()
-            };
-            saveState();
-            closeStudentModal();
-        }
-
-        function openReportModal() {
-            document.getElementById('report-student-name').innerText = state.studentInfo?.name || 'Not Provided';
-            document.getElementById('report-student-id').innerText = state.studentInfo?.id || 'Not Provided';
-            document.getElementById('report-student-group').innerText = state.studentInfo?.group || 'Not Provided';
-            document.getElementById('report-date-stamp').innerText = 'Generated: ' + new Date().toLocaleDateString('en-GB', { day: 'numeric', month: 'short', year: 'numeric' });
-
-            const tbody = document.getElementById('report-table-body');
-            let rowsHtml = '';
-
-            let totalTopics = getTotalTopicsCount();
-            let masteredTopics = getMasteredTopicsCount();
-            let completedAssg = getCompletedAssignmentsCount();
-
-            SYLLABUS_DATA.forEach(week => {
-                const allTopics = getAllTopicsList(week);
-                let doneCount = 0;
-                allTopics.forEach((t, idx) => {
-                    if (state.completedTopics[`${week.week}_${idx}`]) doneCount++;
-                });
-
-                let tbl = state.completedSessions[`${week.week}_tbl`] ? '✓ TBL' : '✗ TBL';
-                let cc = state.completedSessions[`${week.week}_cc`] ? '✓ CC' : '✗ CC';
-                let cbd = state.completedSessions[`${week.week}_cbd`] ? '✓ CBD' : '✗ CBD';
-
-                let assgStatus = state.completedAssignments[week.week] ? 'PASSED / SUBMITTED' : 'PENDING';
-
-                rowsHtml += `
-                <tr>
-                    <td class="p-2 border-r border-slate-300 font-bold">W${week.week}: ${week.system}</td>
-                    <td class="p-2 border-r border-slate-300">${doneCount} / ${allTopics.length}</td>
-                    <td class="p-2 border-r border-slate-300 text-[10px]">${tbl} | ${cc} | ${cbd}</td>
-                    <td class="p-2 font-semibold ${state.completedAssignments[week.week] ? 'text-emerald-700' : 'text-amber-700'}">${assgStatus}</td>
-                </tr>
-                `;
-            });
-
-            tbody.innerHTML = rowsHtml;
-
-            const topicPct = totalTopics > 0 ? (masteredTopics / totalTopics) * 100 : 0;
-            const assgPct = (completedAssg / 8) * 100;
-            const overallPct = Math.round((topicPct * 0.6) + (assgPct * 0.4));
-
-            document.getElementById('report-overall-score').innerText = `${overallPct}%`;
-
-            document.getElementById('report-modal').classList.remove('hidden');
-            lucide.createIcons();
-        }
-
-        function closeReportModal() {
-            document.getElementById('report-modal').classList.add('hidden');
-        }
-
-        function printReport() {
-            window.print();
-        }
-
-        function exportProgressJSON() {
-            const dataStr = "data:text/json;charset=utf-8," + encodeURIComponent(JSON.stringify(state, null, 2));
-            const dlAnchorElem = document.createElement('a');
-            dlAnchorElem.setAttribute("href", dataStr);
-            dlAnchorElem.setAttribute("download", `IM_Rotation_Progress_${state.studentInfo?.id || 'Backup'}.json`);
-            document.body.appendChild(dlAnchorElem);
-            dlAnchorElem.click();
-            dlAnchorElem.remove();
-        }
-
-        function triggerImportJSON() {
-            document.getElementById('import-file-input').click();
-        }
-
-        function importProgressJSON(event) {
-            const file = event.target.files[0];
-            if (!file) return;
-
-            const reader = new FileReader();
-            reader.onload = function(e) {
-                try {
-                    const imported = JSON.parse(e.target.result);
-                    state = { ...state, ...imported };
-                    saveState();
-                    setViewMode(state.viewMode);
-                    alert("Progress backup successfully restored!");
-                } catch (err) {
-                    alert("Invalid backup file format.");
-                }
-            };
-            reader.readAsText(file);
-        }
-
-        function toggleFullscreen() {
-            if (!document.fullscreenElement) {
-                document.documentElement.requestFullscreen().catch(err => {
-                    console.log(`Error attempting to enable fullscreen: ${err.message}`);
-                });
-            } else {
-                if (document.exitFullscreen) {
-                    document.exitFullscreen();
-                }
-            }
-        }
-
-        function saveState() {
-            try {
-                localStorage.setItem(STORAGE_KEY, JSON.stringify({
-                    completedTopics: state.completedTopics,
-                    completedAssignments: state.completedAssignments,
-                    completedSessions: state.completedSessions,
-                    notes: state.notes
-                }));
-            } catch (e) {
-                console.error("Error saving to local storage:", e);
-            }
-            updateHeaderStats();
-        }
-
-        function getAllTopicsList(weekObj) {
-            let list = [];
-            if (weekObj.topics) {
-                list = [...weekObj.topics];
-            } else if (weekObj.subSystems) {
-                weekObj.subSystems.forEach(sub => {
-                    list = list.concat(sub.topics);
-                });
-            }
-            return list;
-        }
-
-        function getTotalTopicsCount() {
-            let count = 0;
-            SYLLABUS_DATA.forEach(w => {
-                count += getAllTopicsList(w).length;
-            });
-            return count;
-        }
-
-        function getMasteredTopicsCount() {
-            return Object.values(state.completedTopics).filter(Boolean).length;
-        }
-
-        function getCompletedAssignmentsCount() {
-            return Object.values(state.completedAssignments).filter(Boolean).length;
-        }
-
-        function updateHeaderStats() {
-            const totalTopics = getTotalTopicsCount();
-            const masteredTopics = getMasteredTopicsCount();
-            const completedAssg = getCompletedAssignmentsCount();
-
-            const topicEl = document.getElementById('header-topics-count');
-            const assgEl = document.getElementById('header-assignments-count');
-            const barEl = document.getElementById('header-progress-bar');
-
-            if (topicEl) topicEl.innerText = `${masteredTopics}/${totalTopics}`;
-            if (assgEl) assgEl.innerText = `${completedAssg}/8`;
-
-            const topicPct = totalTopics > 0 ? (masteredTopics / totalTopics) * 100 : 0;
-            const assgPct = (completedAssg / 8) * 100;
-            const overallPct = Math.round((topicPct * 0.6) + (assgPct * 0.4));
-
-            if (barEl) barEl.style.width = `${overallPct}%`;
-
-            // Dashboard Modal Updates
-            const dashTopic = document.getElementById('dash-topics-pct');
-            const dashAssg = document.getElementById('dash-assignments-pct');
-            const dashTbl = document.getElementById('dash-tbl-pct');
-            const dashCbd = document.getElementById('dash-cbd-pct');
-            const dashOverall = document.getElementById('dash-overall-pct');
-            const dashOverallBar = document.getElementById('dash-overall-bar');
-
-            if (dashTopic) dashTopic.innerText = `${Math.round(topicPct)}%`;
-            if (dashAssg) dashAssg.innerText = `${completedAssg}/8`;
-
-            let tblCount = 0;
-            let ccCbdCount = 0;
-            SYLLABUS_DATA.forEach(w => {
-                if (state.completedSessions[`${w.week}_tbl`]) tblCount++;
-                if (state.completedSessions[`${w.week}_cc`]) ccCbdCount++;
-                if (state.completedSessions[`${w.week}_cbd`]) ccCbdCount++;
-            });
-
-            if (dashTbl) dashTbl.innerText = `${tblCount}/8`;
-            if (dashCbd) dashCbd.innerText = `${ccCbdCount}/16`;
-            if (dashOverall) dashOverall.innerText = `${overallPct}%`;
-            if (dashOverallBar) dashOverallBar.style.width = `${overallPct}%`;
-        }
-
-        function renderGridView() {
-            const container = document.getElementById('grid-view');
-            if (!container) return;
-
-            const query = state.searchQuery.toLowerCase().trim();
-            const filter = state.filterSystem;
-
-            let html = '';
-
-            SYLLABUS_DATA.forEach(week => {
-                const allTopics = getAllTopicsList(week);
-                const isAssgDone = !!state.completedAssignments[week.week];
-
-                if (filter === 'completed' && !isAssgDone) return;
-                if (filter === 'incomplete' && isAssgDone) return;
-
-                if (query) {
-                    const matchSystem = week.system.toLowerCase().includes(query);
-                    const matchAssg = week.assignment.title.toLowerCase().includes(query);
-                    const matchTopics = allTopics.some(t => t.toLowerCase().includes(query));
-                    if (!matchSystem && !matchAssg && !matchTopics) return;
-                }
-
-                let weekTopicsDone = 0;
-                allTopics.forEach((t, idx) => {
-                    if (state.completedTopics[`${week.week}_${idx}`]) weekTopicsDone++;
-                });
-
-                const weekPct = Math.round((weekTopicsDone / allTopics.length) * 100);
-
-                html += `
-                <div class="glass-card glass-card-hover rounded-3xl p-6 border ${week.borderColor} flex flex-col justify-between space-y-6 relative overflow-hidden group bg-white shadow-sm">
-                    <div class="absolute inset-0 bg-gradient-to-br ${week.bgGradient} opacity-60 pointer-events-none"></div>
-                    
-                    <div class="relative z-10 space-y-4">
-                        <!-- Card Header -->
-                        <div class="flex items-start justify-between">
-                            <div class="flex items-center space-x-3">
-                                <div class="w-12 h-12 rounded-2xl bg-slate-50 border border-slate-200 flex items-center justify-center text-teal-600 shadow-sm">
-                                    <i data-lucide="${week.icon}" class="w-6 h-6"></i>
-                                </div>
-                                <div>
-                                    <span class="text-xs font-bold tracking-wider uppercase px-2.5 py-0.5 rounded-full ${week.badgeBg}">
-                                        Week ${week.week}
-                                    </span>
-                                    <h3 class="text-xl font-bold text-slate-900 mt-1 group-hover:text-teal-700 transition-colors">${week.system}</h3>
-                                </div>
-                            </div>
-
-                            <!-- Status Indicator -->
-                            <div class="text-right">
-                                ${isAssgDone ? 
-                                    `<span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-emerald-100 text-emerald-800 border border-emerald-300">
-                                        <i data-lucide="check-circle" class="w-3.5 h-3.5"></i> Submitted
-                                    </span>` :
-                                    `<span class="inline-flex items-center gap-1 text-xs font-semibold px-2.5 py-1 rounded-lg bg-amber-100 text-amber-800 border border-amber-300">
-                                        <i data-lucide="clock" class="w-3.5 h-3.5"></i> Pending
-                                    </span>`
-                                }
-                            </div>
-                        </div>
-
-                        <!-- Progress indicator bar for week -->
-                        <div class="space-y-1">
-                            <div class="flex justify-between text-xs font-medium text-slate-500">
-                                <span>Topics Completed</span>
-                                <span class="text-teal-700 font-bold">${weekTopicsDone}/${allTopics.length} (${weekPct}%)</span>
-                            </div>
-                            <div class="w-full bg-slate-200/80 h-1.5 rounded-full overflow-hidden">
-                                <div class="bg-teal-600 h-full transition-all duration-500" style="width: ${weekPct}%"></div>
-                            </div>
-                        </div>
-
-                        <!-- Topic Chips Preview (first 5) -->
-                        <div class="space-y-2">
-                            <span class="text-xs font-semibold text-slate-500 uppercase tracking-wider">Key Clinical Topics:</span>
-                            <div class="flex flex-wrap gap-1.5">
-                                ${allTopics.slice(0, 5).map(t => `<span class="px-2.5 py-1 rounded-md bg-slate-100 text-xs text-slate-700 border border-slate-200/80">${t}</span>`).join('')}
-                                ${allTopics.length > 5 ? `<span class="px-2 py-1 rounded-md bg-slate-100 text-xs text-teal-700 font-medium border border-teal-200">+${allTopics.length - 5} more</span>` : ''}
-                            </div>
-                        </div>
-
-                        <!-- Assignment Box -->
-                        <div class="p-3.5 rounded-2xl bg-slate-50 border border-slate-200 space-y-1">
-                            <div class="flex items-center justify-between text-xs text-slate-500">
-                                <span class="font-bold text-amber-700 flex items-center gap-1">
-                                    <i data-lucide="file-text" class="w-3.5 h-3.5"></i> Weekly Assignment:
-                                </span>
-                            </div>
-                            <p class="text-xs font-semibold text-slate-800 line-clamp-1">${week.assignment.title}</p>
-                        </div>
-                    </div>
-
-                    <!-- Card Actions -->
-                    <div class="relative z-10 pt-2 flex items-center justify-between gap-3">
-                        <div class="flex items-center gap-1 text-xs text-slate-500">
-                            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-medium">TBL</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-medium">CC</span>
-                            <span class="px-2 py-0.5 rounded bg-slate-100 border border-slate-200 font-medium">CBD</span>
-                        </div>
-                        <button onclick="openWeekModal(${week.week})" class="px-4 py-2 rounded-xl bg-teal-600 hover:bg-teal-700 text-white text-xs font-bold transition-all shadow-sm flex items-center gap-1.5">
-                            <span>Open Week Hub</span>
-                            <i data-lucide="arrow-right" class="w-4 h-4"></i>
-                        </button>
-                    </div>
-                </div>
-                `;
-            });
-
-            if (html === '') {
-                html = `
-                <div class="col-span-full p-12 text-center glass-card rounded-3xl space-y-3 bg-white shadow-sm border border-slate-200">
-                    <i data-lucide="search-x" class="w-12 h-12 text-slate-400 mx-auto"></i>
-                    <h4 class="text-lg font-bold text-slate-900">No Matching Systems Found</h4>
-                    <p class="text-xs text-slate-500">Try clearing your search keyword or switching filter options.</p>
-                    <button onclick="clearSearch()" class="px-4 py-2 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs text-teal-800 border border-slate-200 font-semibold shadow-sm">Clear Search Filter</button>
-                </div>
-                `;
-            }
-
-            container.innerHTML = html;
-            lucide.createIcons();
-        }
-
-        function renderTimelineView() {
-            const container = document.getElementById('timeline-view');
-            if (!container) return;
-
-            let html = '';
-            SYLLABUS_DATA.forEach(week => {
-                const allTopics = getAllTopicsList(week);
-                const isAssgDone = !!state.completedAssignments[week.week];
-
-                html += `
-                <div class="relative group">
-                    <div class="absolute -left-[43px] top-1.5 w-8 h-8 rounded-full bg-white border-2 border-teal-600 flex items-center justify-center text-teal-700 text-xs font-bold shadow-md">
-                        ${week.week}
-                    </div>
-
-                    <div class="glass-card rounded-2xl p-6 border border-slate-200 space-y-4 bg-white shadow-sm">
-                        <div class="flex flex-wrap items-center justify-between gap-2">
-                            <div>
-                                <span class="text-xs font-bold text-teal-700 uppercase tracking-wider">Week ${week.week}</span>
-                                <h3 class="text-xl font-bold text-slate-900">${week.system}</h3>
-                            </div>
-                            <button onclick="openWeekModal(${week.week})" class="px-3.5 py-1.5 rounded-xl bg-slate-100 hover:bg-slate-200 text-xs font-bold text-slate-700 border border-slate-200 flex items-center gap-1.5 shadow-sm">
-                                <span>Inspect Week</span> <i data-lucide="external-link" class="w-3.5 h-3.5"></i>
+                    <!-- Search & Tools -->
+                    <div class="flex items-center space-x-3">
+                        <!-- Global Search -->
+                        <div class="relative hidden md:block w-64 lg:w-80">
+                            <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                            <input type="text" id="searchInput" oninput="handleSearch(this.value)" placeholder="Search topics (e.g. ECG, SLE, AKI)..." 
+                                class="w-full pl-9 pr-8 py-1.5 text-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500 text-slate-800 dark:text-slate-200">
+                            <button id="clearSearchBtn" onclick="clearSearch()" class="hidden absolute right-2.5 top-1/2 -translate-y-1/2 text-slate-400 hover:text-slate-600">
+                                <i class="fa-solid fa-xmark text-xs"></i>
                             </button>
                         </div>
 
-                        <div class="text-xs text-slate-600 leading-relaxed">
-                            <strong class="text-slate-700">Curriculum Topics:</strong> ${allTopics.join(' &bull; ')}
-                        </div>
+                        <!-- Dark Mode Toggle -->
+                        <button onclick="toggleDarkMode()" class="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                            <i id="themeIcon" class="fa-solid fa-moon"></i>
+                        </button>
 
-                        <div class="p-3 rounded-xl bg-slate-50 border border-slate-200 flex items-center justify-between text-xs">
-                            <div class="space-y-0.5">
-                                <span class="text-amber-700 font-bold">Mandatory Weekly Assignment:</span>
-                                <p class="text-slate-800 font-semibold">${week.assignment.title}</p>
+                        <!-- Print Syllabus -->
+                        <button onclick="window.print()" title="Print Syllabus" class="p-2 text-slate-500 hover:text-slate-700 dark:text-slate-400 dark:hover:text-slate-200 rounded-lg hover:bg-slate-100 dark:hover:bg-slate-800 transition">
+                            <i class="fa-solid fa-print"></i>
+                        </button>
+
+                        <!-- Reset Progress Button -->
+                        <button onclick="confirmReset()" title="Reset Tracker" class="p-2 text-red-500 hover:text-red-700 hover:bg-red-50 dark:hover:bg-red-950/30 rounded-lg transition">
+                            <i class="fa-solid fa-rotate-right"></i>
+                        </button>
+                    </div>
+                </div>
+            </div>
+            
+            <!-- Mobile Search Bar -->
+            <div class="md:hidden px-4 pb-3">
+                <div class="relative">
+                    <i class="fa-solid fa-magnifying-glass absolute left-3 top-1/2 -translate-y-1/2 text-slate-400 text-sm"></i>
+                    <input type="text" id="mobileSearchInput" oninput="handleSearch(this.value)" placeholder="Search topics (e.g. ACS, LFT, Stroke)..." 
+                        class="w-full pl-9 pr-4 py-2 text-sm bg-slate-100 dark:bg-slate-800 border border-slate-200 dark:border-slate-700 rounded-lg focus:outline-none focus:ring-2 focus:ring-sky-500">
+                </div>
+            </div>
+        </header>
+
+        <!-- Main Content Layout -->
+        <main class="flex-1 max-w-7xl w-full mx-auto px-4 sm:px-6 lg:px-8 py-6 space-y-6">
+
+            <!-- Banner & Dynamic Guidance Alert -->
+            <div class="bg-gradient-to-r from-sky-900 via-indigo-900 to-slate-900 text-white rounded-2xl p-5 sm:p-6 shadow-xl relative overflow-hidden">
+                <div class="absolute -right-10 -bottom-10 opacity-10 text-white pointer-events-none">
+                    <i class="fa-solid fa-notes-medical text-[220px]"></i>
+                </div>
+                <div class="relative z-10 flex flex-col md:flex-row items-start md:items-center justify-between gap-4">
+                    <div class="space-y-2 max-w-2xl">
+                        <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-sky-500/20 text-sky-200 border border-sky-400/30">
+                            <i class="fa-solid fa-circle-info mr-1.5"></i> Syllabus & Clinical Rotation Notice
+                        </div>
+                        <h2 class="text-xl sm:text-2xl font-bold text-white tracking-tight">Clinical Medicine Weekly Curriculum</h2>
+                        <p class="text-slate-300 text-xs sm:text-sm leading-relaxed">
+                            Each week focuses on a key medical system. Medicine is dynamic; topic lists serve as a core guide. Topic details may adapt, but <strong class="text-amber-300 underline font-medium">weekly assignment submissions remain mandatory</strong>.
+                        </p>
+                    </div>
+
+                    <!-- Curriculum Core Pillars Badge -->
+                    <div class="w-full md:w-auto bg-white/10 backdrop-blur border border-white/15 rounded-xl p-3 sm:p-4 text-xs space-y-2">
+                        <div class="font-semibold text-sky-200 text-center md:text-left flex items-center gap-1.5">
+                            <i class="fa-solid fa-layer-group"></i> Every Week Includes:
+                        </div>
+                        <div class="grid grid-cols-3 gap-2 text-center font-medium">
+                            <div class="bg-white/10 rounded px-2 py-1.5" title="Team Based Learning">
+                                <span class="block text-sky-300 font-bold">TBL</span> Session
                             </div>
-                            <span class="${isAssgDone ? 'text-emerald-800 bg-emerald-100 border-emerald-200' : 'text-amber-800 bg-amber-100 border-amber-200'} border px-2.5 py-1 rounded-md font-bold">
-                                ${isAssgDone ? 'Submitted' : 'Pending'}
-                            </span>
+                            <div class="bg-white/10 rounded px-2 py-1.5" title="Clinical Competencies">
+                                <span class="block text-emerald-300 font-bold">CC</span> Skills
+                            </div>
+                            <div class="bg-white/10 rounded px-2 py-1.5" title="Case Based Discussion">
+                                <span class="block text-purple-300 font-bold">CBD</span> Discussion
+                            </div>
                         </div>
                     </div>
                 </div>
-                `;
-            });
+            </div>
 
-            container.innerHTML = html;
-            lucide.createIcons();
+            <!-- Stats & Progress Dashboard -->
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-4">
+                <!-- Topics Complete Card -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Topics Mastered</p>
+                        <p id="topicsStat" class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mt-0.5">0 / 0</p>
+                        <div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+                            <div id="topicsProgressBar" class="bg-sky-500 h-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-sky-50 dark:bg-sky-950/50 text-sky-600 dark:text-sky-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-list-check"></i>
+                    </div>
+                </div>
+
+                <!-- Assignments Submitted Card -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Assignments Done</p>
+                        <p id="assignmentsStat" class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mt-0.5">0 / 8</p>
+                        <div class="w-full bg-slate-100 dark:bg-slate-700 h-1.5 rounded-full mt-2 overflow-hidden">
+                            <div id="assignmentsProgressBar" class="bg-emerald-500 h-full transition-all duration-300" style="width: 0%"></div>
+                        </div>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-emerald-50 dark:bg-emerald-950/50 text-emerald-600 dark:text-emerald-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-file-signature"></i>
+                    </div>
+                </div>
+
+                <!-- Overall Rotation Progress -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Rotation Completion</p>
+                        <p id="overallStat" class="text-xl sm:text-2xl font-bold text-slate-800 dark:text-white mt-0.5">0%</p>
+                        <p class="text-[10px] text-slate-400 mt-1">Weighted progress</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-indigo-50 dark:bg-indigo-950/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-chart-line"></i>
+                    </div>
+                </div>
+
+                <!-- Current Active Week -->
+                <div class="bg-white dark:bg-slate-800 p-4 rounded-xl border border-slate-200 dark:border-slate-700 shadow-sm flex items-center justify-between">
+                    <div>
+                        <p class="text-xs text-slate-500 dark:text-slate-400 font-medium">Active Module Focus</p>
+                        <p id="activeWeekStat" class="text-sm sm:text-base font-bold text-sky-600 dark:text-sky-400 mt-0.5 truncate max-w-[120px] sm:max-w-[150px]">
+                            Week 1 & 2
+                        </p>
+                        <p class="text-[10px] text-slate-400 mt-0.5">Cardiology</p>
+                    </div>
+                    <div class="w-10 h-10 rounded-lg bg-amber-50 dark:bg-amber-950/50 text-amber-600 dark:text-amber-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-calendar-week"></i>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Main Content Container with Tabs/Sidebar Navigation -->
+            <div class="grid grid-cols-1 lg:grid-cols-12 gap-6">
+                <!-- Navigation Sidebar (Weeks List) -->
+                <div class="lg:col-span-4 xl:col-span-3 space-y-3 no-print">
+                    <div class="bg-white dark:bg-slate-800 rounded-xl p-3 border border-slate-200 dark:border-slate-700 shadow-sm">
+                        <div class="flex items-center justify-between px-2 pb-2 mb-2 border-b border-slate-100 dark:border-slate-700/50">
+                            <span class="text-xs font-bold uppercase tracking-wider text-slate-400">Rotation Weeks</span>
+                            <span class="text-[11px] font-medium text-slate-500" id="weeksCountLabel">8 Modules</span>
+                        </div>
+
+                        <!-- Filter Tabs -->
+                        <div class="grid grid-cols-3 gap-1 p-1 bg-slate-100 dark:bg-slate-900 rounded-lg text-xs font-medium mb-3">
+                            <button onclick="setFilter('all')" id="filterAllBtn" class="py-1 px-2 rounded-md bg-white dark:bg-slate-800 shadow-xs text-slate-800 dark:text-slate-200 font-semibold transition text-center">All</button>
+                            <button onclick="setFilter('pending')" id="filterPendingBtn" class="py-1 px-2 rounded-md hover:bg-white/50 text-slate-500 dark:text-slate-400 transition text-center">Pending</button>
+                            <button onclick="setFilter('completed')" id="filterCompletedBtn" class="py-1 px-2 rounded-md hover:bg-white/50 text-slate-500 dark:text-slate-400 transition text-center">Done</button>
+                        </div>
+
+                        <!-- Week Navigation Buttons -->
+                        <div id="weekNavContainer" class="space-y-1.5 max-h-[520px] overflow-y-auto custom-scrollbar pr-1">
+                            <!-- Dynamically populated by JS -->
+                        </div>
+                    </div>
+
+                    <!-- Quick Tools Panel -->
+                    <div class="bg-gradient-to-br from-indigo-50 to-sky-50 dark:from-slate-800 dark:to-slate-800/80 p-4 rounded-xl border border-indigo-100 dark:border-slate-700 space-y-3">
+                        <h4 class="text-xs font-bold uppercase tracking-wider text-indigo-900 dark:text-indigo-300 flex items-center gap-1.5">
+                            <i class="fa-solid fa-graduation-cap"></i> Interactive Tools
+                        </h4>
+                        <button onclick="openQuizModal()" class="w-full py-2 px-3 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-medium shadow-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-bolt"></i> High-Yield Practice Quiz
+                        </button>
+                        <button onclick="openNotesModal()" class="w-full py-2 px-3 bg-white dark:bg-slate-700 hover:bg-slate-50 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium shadow-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-book-bookmark text-amber-500"></i> My Module Clinical Notes
+                        </button>
+                    </div>
+                </div>
+
+                <!-- Main Module View Column -->
+                <div class="lg:col-span-8 xl:col-span-9 space-y-6">
+                    <!-- Search Results Info Header (Only shown when searching) -->
+                    <div id="searchResultHeader" class="hidden bg-amber-50 dark:bg-amber-950/30 border border-amber-200 dark:border-amber-800 rounded-xl p-3 text-xs text-amber-800 dark:text-amber-200 flex items-center justify-between">
+                        <div class="flex items-center gap-2">
+                            <i class="fa-solid fa-filter text-amber-600"></i>
+                            <span>Filtering topics matching: <strong id="searchQueryDisplay">""</strong></span>
+                        </div>
+                        <button onclick="clearSearch()" class="font-bold underline hover:text-amber-950 dark:hover:text-amber-100">Reset Search</button>
+                    </div>
+
+                    <!-- Active Module Container -->
+                    <div id="moduleCardContainer" class="bg-white dark:bg-slate-800 rounded-2xl border border-slate-200 dark:border-slate-700 shadow-sm overflow-hidden transition-all">
+                        <!-- Dynamically Rendered Content -->
+                    </div>
+                </div>
+            </div>
+        </main>
+
+        <!-- Quiz Modal -->
+        <div id="quizModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 relative animate-in fade-in zoom-in-95 duration-200">
+                <button onclick="closeQuizModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 dark:hover:text-slate-200 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center">
+                        <i class="fa-solid fa-bolt"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white" id="quizModalTitle">Clinical High-Yield Quiz</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400" id="quizModalSubtitle">Test your understanding</p>
+                    </div>
+                </div>
+
+                <!-- Quiz Body -->
+                <div id="quizBody" class="py-2 space-y-4">
+                    <!-- Dynamic Quiz Content -->
+                </div>
+
+                <div class="flex justify-end space-x-2 pt-2 border-t border-slate-100 dark:border-slate-700">
+                    <button onclick="closeQuizModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold hover:bg-slate-200 dark:hover:bg-slate-600 transition">Close</button>
+                    <button id="nextQuizBtn" onclick="nextQuizQuestion()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm transition">Next Question <i class="fa-solid fa-arrow-right ml-1"></i></button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Personal Notes Modal -->
+        <div id="notesModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 relative">
+                <button onclick="closeNotesModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-8 h-8 rounded-lg bg-amber-100 dark:bg-amber-900/50 text-amber-600 dark:text-amber-400 flex items-center justify-center">
+                        <i class="fa-solid fa-pen-to-square"></i>
+                    </div>
+                    <div>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white">Clinical Rotation Study Notes</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Stored locally in your browser</p>
+                    </div>
+                </div>
+
+                <div class="space-y-3">
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Select Week Module:</label>
+                        <select id="noteWeekSelect" onchange="loadModuleNote()" class="w-full p-2 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200">
+                            <!-- Populated by JS -->
+                        </select>
+                    </div>
+                    <div>
+                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Personal Notes & Diagnostic Differentials:</label>
+                        <textarea id="moduleNoteText" rows="10" placeholder="Type key diagnostics, drug dosages, criteria, or reminders for this week's rotation..."
+                            class="w-full p-3 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-sky-500 text-slate-800 dark:text-slate-200 custom-scrollbar font-mono leading-relaxed"></textarea>
+                    </div>
+                </div>
+
+                <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-700">
+                    <span id="noteSaveStatus" class="text-xs text-emerald-600 font-medium opacity-0 transition-opacity">Saved!</span>
+                    <div class="space-x-2">
+                        <button onclick="closeNotesModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
+                        <button onclick="saveModuleNote()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-semibold shadow-sm">Save Notes</button>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <footer class="mt-auto py-6 border-t border-slate-200 dark:border-slate-800 bg-white dark:bg-slate-900 text-xs text-slate-500 text-center no-print">
+            <div class="max-w-7xl mx-auto px-4 flex flex-col sm:flex-row items-center justify-between gap-2">
+                <p>© Internal Medicine Undergraduate & Postgraduate Clinical Rotation Guide</p>
+                <div class="flex items-center space-x-4">
+                    <span><i class="fa-solid fa-laptop-medical mr-1 text-sky-500"></i> Active Guidance Mode</span>
+                    <span><i class="fa-solid fa-shield-halved mr-1 text-emerald-500"></i> Evidence-Based Practice</span>
+                </div>
+            </div>
+        </footer>
+    </div>
+
+    <script>
+        // Module Data Structure
+        const SYLLABUS_DATA = [
+            {
+                id: 'week1_2',
+                weekLabel: 'Week 1 & 2',
+                system: 'Cardiology',
+                icon: 'fa-heart-pulse',
+                color: 'rose',
+                bgGradient: 'from-rose-500 to-red-600',
+                description: 'Focus on cardiovascular disorders, haemodynamics, ECG arrhythmia identification, coronary syndromes, and blood pressure control.',
+                assignment: {
+                    title: 'ECG Interpretation',
+                    description: 'Systematic approach to 12-Lead ECG: Rate, Rhythm, Axis, Intervals (PR, QRS, QTc), Waves (P, QRS, ST, T), and clinical synthesis.',
+                    tasks: [
+                        'Analyze rate, rhythm (regularity, P wave presence), and cardiac axis.',
+                        'Identify ischaemic changes (ST elevation/depression, T-wave inversion, pathological Q waves).',
+                        'Recognize common arrhythmias (AFib, SVT, VT, AV blocks, PVCs).',
+                        'Identify signs of LVH, electrolyte disturbances (hyper/hypokalaemia), and digitalis toxicity.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Core Cardiovascular Conditions',
+                        topics: [
+                            'Ischaemic heart disease / ACS (STEMI, NSTEMI, Unstable Angina)',
+                            'Arrhythmias (Tachyarrhythmias, Bradyarrhythmias, AFib, Heart Block)',
+                            'Heart failure (HFrEF, HFpEF, Acute Decompensated HF)',
+                            'Hypertension (+ secondary causes e.g., renal artery stenosis, Conn syndrome)',
+                            'Rheumatic heart disease',
+                            'Valvular disease (AS, AR, MS, MR, Valve replacement issues)',
+                            'Infective endocarditis (Dukes criteria, prophylaxis, empiric therapy)',
+                            'Cardiomyopathy (Dilated, Hypertrophic/HOCM, Restrictive)'
+                        ]
+                    }
+                ],
+                tblFocus: 'Acute Coronary Syndromes management algorithms & antiplatelet/anticoagulation options.',
+                ccFocus: 'Cardiovascular examination (JVP evaluation, heart murmurs grading, peripheral pulses).',
+                cbdFocus: 'Management of acute heart failure presentation and cardiogenic shock.',
+                quizzes: [
+                    {
+                        q: 'Which ECG finding is classic for acute inferior wall STEMI?',
+                        options: ['ST elevation in V1-V4', 'ST elevation in II, III, aVF', 'ST depression in V5-V6', 'PR interval prolongation >200ms'],
+                        answer: 1,
+                        explanation: 'Leads II, III, and aVF correspond to the inferior heart wall (commonly RCA occlusion).'
+                    },
+                    {
+                        q: 'Which murmur is typically a crescendo-decrescendo systolic murmur radiating to the carotids?',
+                        options: ['Mitral Regurgitation', 'Aortic Stenosis', 'Aortic Regurgitation', 'Mitral Stenosis'],
+                        answer: 1,
+                        explanation: 'Aortic Stenosis produces a harsh ejection systolic murmur radiating to the carotid arteries.'
+                    }
+                ]
+            },
+            {
+                id: 'week3',
+                weekLabel: 'Week 3',
+                system: 'Respiratory',
+                icon: 'fa-lungs',
+                color: 'sky',
+                bgGradient: 'from-sky-500 to-blue-600',
+                description: 'Study of obstructive and restrictive lung diseases, pulmonary vasculature, respiratory failure, and thoracic oncology.',
+                assignment: {
+                    title: 'ABG & CXR Interpretation',
+                    description: 'Dual competence assignment covering systematic arterial blood gas analysis and structured chest x-ray evaluation.',
+                    tasks: [
+                        'Determine primary ABG disturbance (Metabolic/Respiratory Acidosis/Alkalosis) and compensation status.',
+                        'Calculate Anion Gap & Oxygenation Index (PaO2/FiO2 ratio for ARDS).',
+                        'Systematic CXR read: ABCDE (Airway, Bones/Breathing, Cardiac, Diaphragm, Everything else/Effusions).',
+                        'Identify pneumothorax, pulmonary oedema, consolidation, lung masses, and pleural effusion.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Pulmonary Medicine',
+                        topics: [
+                            'Asthma (Exacerbations, GINA step-ladder therapy)',
+                            'COPD (GOLD guidelines, acute exacerbations, LTOT)',
+                            'Cor pulmonale',
+                            'Respiratory failure (Type 1 vs Type 2 mechanism)',
+                            'Pneumonia (CAP, HAP, CURB-65 criteria)',
+                            'Tuberculosis (TB) (Pulmonary, Extrapulmonary, MDR-TB)',
+                            'Pulmonary embolism (Wells score, PERC rule, d-Dimer, CTPA)',
+                            'Pleural disease (Effusions, Light’s criteria, Pneumothorax)',
+                            'Interstitial Lung Disease (ILD / Pulmonary Fibrosis)',
+                            'Lung cancer (NSCLC, SCLC, paraneoplastic syndromes)',
+                            'Obstructive Sleep Apnea (OSA / STOP-Bang score)'
+                        ]
+                    }
+                ],
+                tblFocus: 'Management of severe acute asthma vs acute exacerbation of COPD.',
+                ccFocus: 'Respiratory system exam (percussion notes, breath sounds, vocal fremitus, chest expansion).',
+                cbdFocus: 'Approach to a patient presenting with acute dyspnoea & pleuritic chest pain (PE vs Pneumothorax vs Pneumonia).',
+                quizzes: [
+                    {
+                        q: 'According to Light\'s criteria, an effusion is exudative if fluid to serum protein ratio is higher than:',
+                        options: ['0.2', '0.5', '0.7', '0.9'],
+                        answer: 1,
+                        explanation: 'Light\'s criteria for exudate: Pleural/Serum protein >0.5, Pleural/Serum LDH >0.6, or Pleural LDH > 2/3 upper limit of normal serum LDH.'
+                    }
+                ]
+            },
+            {
+                id: 'week4',
+                weekLabel: 'Week 4',
+                system: 'Nephrology',
+                icon: 'fa-kidney',
+                color: 'emerald',
+                bgGradient: 'from-emerald-500 to-teal-600',
+                description: 'Covers renal parenchymal diseases, acute and chronic kidney injury, glomerulopathies, and renal replacement therapies.',
+                assignment: {
+                    title: 'Renal Profile Interpretation & UFEME',
+                    description: 'Evaluation of renal function test (RP/BUSE) alongside Urine Full Examination & Microscopic Examination (UFEME).',
+                    tasks: [
+                        'Interpret Serum Creatinine, Blood Urea, Electrolytes (Na+, K+, Cl-, HCO3-), and eGFR.',
+                        'Differentiate Pre-renal, Intrinsic, and Post-renal AKI etiologies.',
+                        'Analyze UFEME: Proteinuria, Haematuria, Pyuria, Nitrites, Leukocyte Esterase, Casts (RBC casts, Dysmorphic RBCs, Muddy brown casts).',
+                        'Evaluate CKD staging and indications for emergency renal replacement therapy (AEIOU).'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Renal Systems & Dialysis',
+                        topics: [
+                            'Urinary Tract Infection (UTI / Pyelonephritis)',
+                            'Acute Kidney Injury (AKI / KDIGO staging)',
+                            'Chronic Kidney Disease (CKD / Staging & complications)',
+                            'Diabetic nephropathy',
+                            'Polycystic Kidney Disease (PCKD)',
+                            'Glomerulonephritis (Rapidly progressive, IgA, PSGN)',
+                            'Nephrotic vs Nephritic syndrome (Minimal change, FSGS, Membranous)',
+                            'Renal replacement therapy (Haemodialysis, Peritoneal dialysis, Transplant)'
+                        ]
+                    }
+                ],
+                tblFocus: 'Emergency indications for dialysis (AEIOU criteria: Acidosis, Electrolytes, Ingestion, Overload, Uraemia).',
+                ccFocus: 'Evaluation of volume status (edema, JVP, skin turgor) & Arteriovenous Fistula examination.',
+                cbdFocus: 'Unravelling nephrotic vs nephritic syndrome presentations in young vs adult patients.',
+                quizzes: [
+                    {
+                        q: 'RBC casts in urine urine microscopy are pathognomonic for:',
+                        options: ['Acute Tubular Necrosis', 'Glomerulonephritis', 'Pyelonephritis', 'Nephrotic Syndrome'],
+                        answer: 1,
+                        explanation: 'RBC casts indicate glomerular inflammation and bleeding (Nephritic Syndrome / Glomerulonephritis).'
+                    }
+                ]
+            },
+            {
+                id: 'week5',
+                weekLabel: 'Week 5',
+                system: 'Gastroenterology & Hepatology',
+                icon: 'fa-box-tissue',
+                color: 'amber',
+                bgGradient: 'from-amber-500 to-orange-600',
+                description: 'Encompasses luminal gastrointestinal pathology, acute and chronic liver disorders, biliary tract, and pancreatic disease.',
+                assignment: {
+                    title: 'Liver Function Test (LFT) Interpretation',
+                    description: 'Detailed approach to patterns of liver enzyme elevation: Hepatocellular vs Cholestatic vs Isolated Hyperbilirubinaemia.',
+                    tasks: [
+                        'Distinguish Hepatocellular (ALT/AST predominance) from Cholestatic (ALP/GGT predominance) patterns.',
+                        'Calculate R-factor ratio: (ALT/ULN) / (ALP/ULN).',
+                        'Evaluate synthetic liver function: Albumin, Prothrombin Time (PT/INR), Bilirubin.',
+                        'Identify causes of unconjugated vs conjugated hyperbilirubinaemia.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Gastrointestinal & Liver Disorders',
+                        topics: [
+                            'Peptic ulcer disease (H. pylori, NSAID-induced)',
+                            'GERD (Gastroesophageal reflux disease)',
+                            'Gastroenteritis (Viral, Bacterial, Parasitic)',
+                            'Inflammatory Bowel Disease (Crohn’s, Ulcerative Colitis) vs IBS',
+                            'Jaundice (Pre-hepatic, Hepatic, Post-hepatic obstructive)',
+                            'Hepatitis (Viral A, B, C, D, E, Autoimmune, Drug-induced)',
+                            'ALD (Alcoholic Liver Disease) / NAFLD (Non-Alcoholic Fatty Liver Disease)',
+                            'Cirrhosis & Portal hypertension (Varices, Ascites, Splenomegaly)',
+                            'Hepatocellular Carcinoma (HCC / Alpha-fetoprotein monitoring)',
+                            'Hepatic encephalopathy (West Haven criteria)',
+                            'Liver failure (Acute fulminant liver failure vs ACLF)',
+                            'Pancreatitis (Acute Atlanta classification vs Chronic)'
+                        ]
+                    }
+                ],
+                tblFocus: 'Management of Acute Upper GI Bleeding (Glasgow-Blatchford & Rockall scoring).',
+                ccFocus: 'Abdominal Examination (Ascites shift percussion, fluid wave, hepatosplenomegaly, stigmata of CLD).',
+                cbdFocus: 'Decompensated chronic liver disease presenting with hepatic encephalopathy or SBP.',
+                quizzes: [
+                    {
+                        q: 'An AST:ALT ratio > 2:1 is highly suggestive of:',
+                        options: ['Viral Hepatitis', 'Alcohol-related Liver Disease', 'Nonalcoholic Fatty Liver', 'Autoimmune Hepatitis'],
+                        answer: 1,
+                        explanation: 'An AST to ALT ratio of 2:1 or greater strongly points toward alcoholic liver disease.'
+                    }
+                ]
+            },
+            {
+                id: 'week6',
+                weekLabel: 'Week 6',
+                system: 'Endocrinology',
+                icon: 'fa-dna',
+                color: 'purple',
+                bgGradient: 'from-purple-500 to-violet-600',
+                description: 'Study of glucose homeostasis, thyroid, adrenal, pituitary axes, and metabolic disorders.',
+                assignment: {
+                    title: 'Diabetes Emergencies',
+                    description: 'Comparative management and fluid resuscitation protocols for Diabetic Ketoacidosis (DKA) vs Hyperosmolar Hyperglycaemic State (HHS).',
+                    tasks: [
+                        'Contrast diagnostic criteria: Glucose level, pH, Serum Bicarbonate, Anion Gap, Ketones, and Osmolality.',
+                        'Outline fluid replacement guidelines (0.9% Normal Saline, potassium replacement, glucose addition).',
+                        'Calculate corrected sodium and plasma osmolality.',
+                        'Identify management pitfalls (cerebral oedema, hypokalaemia, hypoglycaemia).'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Endocrine & Metabolic Disorders',
+                        topics: [
+                            'Diabetes mellitus (Type 1, Type 2, Gestational, MODY)',
+                            'Metabolic syndrome',
+                            'Dyslipidaemia (Statins, Fibrates, PCSK9 inhibitors)',
+                            'Thyroid disease (Hyperthyroidism, Hypothyroidism, Thyroid storm, Myxoedema coma)',
+                            'Parathyroid disease (Hyper/Hypoparathyroidism, Calcium disorders)',
+                            'Cushing’s syndrome / Adrenal insufficiency (Addisonian crisis)',
+                            'Hyperaldosteronism (Conn’s syndrome)',
+                            'Phaeochromocytoma',
+                            'Acromegaly',
+                            'Pituitary disease (Hypopituitarism, Hyperprolactinaemia, DI, SIADH)',
+                            'Oral hypoglycaemics & Insulin pharmacology'
+                        ]
+                    }
+                ],
+                tblFocus: 'Insulin regimes selection (Basal-bolus vs Premixed) and oral hypoglycaemic agents in CKD.',
+                ccFocus: 'Thyroid gland palpation & diabetic foot ulcer risk examination.',
+                cbdFocus: 'Acute Addisonian crisis vs Thyroid Storm presentation and resuscitation.',
+                quizzes: [
+                    {
+                        q: 'Which oral hypoglycaemic class is contraindicated in patients with severe CKD due to risk of lactic acidosis?',
+                        options: ['SGLT2 inhibitors', 'Metformin (Biguanide)', 'DPP-4 inhibitors', 'Sulfonylureas'],
+                        answer: 1,
+                        explanation: 'Metformin must be dose-adjusted or stopped in renal impairment due to the risk of Metformin-associated lactic acidosis (MALA).'
+                    }
+                ]
+            },
+            {
+                id: 'week7',
+                weekLabel: 'Week 7',
+                system: 'Rheumatology, Dermatology & Neurology',
+                icon: 'fa-brain',
+                color: 'indigo',
+                bgGradient: 'from-indigo-500 to-sky-600',
+                description: 'Multidisciplinary module covering autoimmune connective tissue disorders, dermatological presentations, and central/peripheral neurological pathology.',
+                assignment: {
+                    title: 'Approach to Headache',
+                    description: 'Structured diagnostic workup for acute vs chronic headache: Red flags (SNOOP criteria), primary vs secondary causes.',
+                    tasks: [
+                        'Evaluate headache red flags using SNOOP4 criteria (Systemic symptoms, Neurologic signs, Onset sudden/thunderclap, Older age, Pattern change).',
+                        'Differentiate Primary Headaches: Migraine, Tension-type, Cluster headache.',
+                        'Formulate emergency management for Secondary Headaches: Subarachnoid Haemorrhage (SAH), Meningitis, Temporal Arteritis (GCA), Raised ICP.',
+                        'Detail indication for immediate neuroimaging (CT/MRI Head) and Lumbar Puncture.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Rheumatology',
+                        topics: [
+                            'Systemic Lupus Erythematosus (SLE)',
+                            'Osteoarthritis',
+                            'Gout & Pseudogout (Crystal arthropathies)',
+                            'Rheumatoid Arthritis (RA)',
+                            'Scleroderma / Systemic Sclerosis (CREST)',
+                            'Seronegative spondyloarthropathies (Ankylosing spondylitis, Psoriatic, Reactive)'
+                        ]
+                    },
+                    {
+                        category: 'Dermatology',
+                        topics: [
+                            'Psoriasis',
+                            'Eczema / Atopic dermatitis',
+                            'Bullous disease (Pemphigus vulgaris vs Bullous pemphigoid)',
+                            'Scabies & Parasitic infestations',
+                            'Cutaneous signs of systemic disease (Dermatomyositis, Erythema nodosum, Vasculitis)'
+                        ]
+                    },
+                    {
+                        category: 'Neurology',
+                        topics: [
+                            'Stroke (Ischaemic vs Haemorrhagic, NIHSS, Thrombolysis/Thrombectomy)',
+                            'Headache (Migraine, Tension, Cluster, Secondary causes)',
+                            'Acute confusional state (Delirium vs Dementia)',
+                            'Meningitis / Encephalitis',
+                            'Epilepsy (Seizure types, Status epilepticus)',
+                            'Bell’s palsy (LMN VII cranial nerve palsy)',
+                            'Coma (Glasgow Coma Scale evaluation)',
+                            'Parkinsonism & Movement disorders',
+                            'Myasthenia gravis',
+                            'Peripheral neuropathy (Diabetic, Alcoholic, B12 deficiency)',
+                            'Guillain-Barré Syndrome (GBS) / CIDP'
+                        ]
+                    }
+                ],
+                tblFocus: 'Acute Stroke thrombolysis eligibility and immediate CT brain interpretation.',
+                ccFocus: 'Complete cranial nerves examination or upper/lower limb neurological examination.',
+                cbdFocus: 'Diagnostic approach to GBS vs Myasthenia Gravis presenting with acute weakness.',
+                quizzes: [
+                    {
+                        q: 'Which nerve root / nerve is affected in Bell’s Palsy?',
+                        options: ['Cranial Nerve V', 'Cranial Nerve VII', 'Cranial Nerve XI', 'Cranial Nerve XII'],
+                        answer: 1,
+                        explanation: 'Bell\'s Palsy is an idiopathic lower motor neuron lesion of Cranial Nerve VII (Facial Nerve).'
+                    }
+                ]
+            },
+            {
+                id: 'week8',
+                weekLabel: 'Week 8',
+                system: 'Haematology & Infectious Disease',
+                icon: 'fa-vial-virus',
+                color: 'teal',
+                bgGradient: 'from-teal-500 to-cyan-600',
+                description: 'Covers red blood cell, white blood cell, and coagulation disorders along with tropical and systemic infectious etiologies.',
+                assignment: {
+                    title: 'Interpreting Full Blood Count (FBC/FBP)',
+                    description: 'Systematic approach to microcytic, normocytic, and macrocytic anaemia, leukocytosis, thrombocytopenia, and blood film morphological features.',
+                    tasks: [
+                        'Analyze Haemoglobin, MCV, MCH, RDW to classify Anaemia.',
+                        'Evaluate White Cell Count differential (Neutrophilia, Lymphocytosis, Eosinophilia, Monocytosis).',
+                        'Identify key blood film findings: Target cells, Schistocytes, Blast cells, Hypersegmented neutrophils, Rouleaux formation.',
+                        'Interpret Coagulation profile (PT, APPT, Fibrinogen, d-Dimer) in DIC vs Liver dysfunction vs Anticoagulation.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Haematology',
+                        topics: [
+                            'Anaemia (Iron deficiency, Megaloblastic, Haemolytic)',
+                            'Thalassaemia (Alpha & Beta, Trait vs Major)',
+                            'Haemophilia (A & B) & Von Willebrand disease',
+                            'Immune Thrombocytopenic Purpura (ITP)',
+                            'Leukaemia (AML, ALL, CML, CLL)',
+                            'Myeloproliferative disorders (Polycythemia vera, ET, Myelofibrosis)',
+                            'Lymphoma (Hodgkin vs Non-Hodgkin)',
+                            'Multiple Myeloma (CRAB criteria)',
+                            'Disseminated Intravascular Coagulation (DIC)',
+                            'FBC / FBP / Coagulation interpretation',
+                            'Anticoagulant pharmacology (DOACs, Warfarin, LMWH reversal)'
+                        ]
+                    },
+                    {
+                        category: 'Infectious Disease',
+                        topics: [
+                            'Dengue fever (Warning signs, severe dengue fluid management)',
+                            'Leptospirosis',
+                            'Tuberculosis (TB infection control)',
+                            'Malaria (Plasmodium falciparum vs vivax, blood smears)',
+                            'Typhoid fever',
+                            'Cholera',
+                            'Melioidosis (Burkholderia pseudomallei)',
+                            'Clostridioides difficile colitis',
+                            'HIV / STDs & Opportunistic Infections',
+                            'Pyrexia of Unknown Origin (PUO investigation protocol)'
+                        ]
+                    }
+                ],
+                tblFocus: 'Dengue Fluid resuscitation protocols & warning signs recognition.',
+                ccFocus: 'Lymph node examination (cervical, axillary, inguinal) & spleen palpation.',
+                cbdFocus: 'Workup of Pyrexia of Unknown Origin (PUO) in a returned traveler.',
+                quizzes: [
+                    {
+                        q: 'Which blood film feature is classic for Microangiopathic Haemolytic Anaemia (MAHA / TTP / DIC)?',
+                        options: ['Auer rods', 'Schistocytes (Helmet cells)', 'Howell-Jolly bodies', 'Heinz bodies'],
+                        answer: 1,
+                        explanation: 'Schistocytes or fragmented RBCs result from mechanical shear stress in microvasculature.'
+                    }
+                ]
+            },
+            {
+                id: 'week9',
+                weekLabel: 'Week 9',
+                system: 'Emergency Medicine Consolidation',
+                icon: 'fa-truck-medical',
+                color: 'red',
+                bgGradient: 'from-red-600 to-rose-700',
+                description: 'Final consolidation of medical resuscitation, shock management, and acute life-threatening medical emergencies.',
+                assignment: {
+                    title: 'Status Asthmaticus Management',
+                    description: 'Emergency resuscitation protocol for acute severe life-threatening asthma exacerbation.',
+                    tasks: [
+                        'Recognize clinical features of Near-Fatal / Life-Threatening Asthma (Silent chest, cyanosis, bradycardia, exhaustion, normal/high PaCO2).',
+                        'Stepwise Acute Pharmacotherapy: Oxygen, SABA continuous nebulisation, Ipratropium, IV Hydrocortisone/Prednisolone, IV Magnesium Sulfate.',
+                        'Evaluate indication for IV Salbutamol / Aminophylline / Ketamine / Escalation to ICU for Mechanical Ventilation.',
+                        'Formulate discharge plan and prevention strategy.'
+                    ]
+                },
+                topicsGrouped: [
+                    {
+                        category: 'Acute Resuscitation & Emergency Medicine',
+                        topics: [
+                            'Shock classification & management (Septic, Cardiogenic, Hypovolemic, Anaphylactic, Neurogenic)',
+                            'Acute pulmonary oedema (Flash pulmonary oedema treatment)',
+                            'Acute Coronary Syndrome (STEMI / NSTEMI emergency protocol)',
+                            'GI bleeding (Massive Upper / Lower GI bleed protocols)',
+                            'Coma & Altered Mental Status (ALOC approach)',
+                            'Status epilepticus / Status asthmaticus emergency algorithm',
+                            'Hypertensive crisis (Hypertensive Urgency vs Emergency)',
+                            'Diabetic Ketoacidosis (DKA) / HHS acute stabilization'
+                        ]
+                    }
+                ],
+                tblFocus: 'Initial Resuscitation in Septic Shock & Hour-1 Bundle execution.',
+                ccFocus: 'Resuscitation skills (Airway management, Bag-Valve-Mask ventilation, Defibrillation).',
+                cbdFocus: 'Systematic approach to the undifferentiated collapsed medical patient.',
+                quizzes: [
+                    {
+                        q: 'What is the first-line medication administered intramuscularly for Acute Anaphylaxis?',
+                        options: ['Hydrocortisone', 'Adrenaline (Epinephrine) 1:1000', 'Diphenhydramine', 'Salbutamol'],
+                        answer: 1,
+                        explanation: 'IM Adrenaline (0.5mg of 1:1000 in adults) is the immediate first-line lifesaving therapy for severe anaphylaxis.'
+                    }
+                ]
+            }
+        ];
+
+        // Global State variables
+        let completedTopics = JSON.parse(localStorage.getItem('med_completed_topics') || '{}');
+        let completedAssignments = JSON.parse(localStorage.getItem('med_completed_assignments') || '{}');
+        let userNotes = JSON.parse(localStorage.getItem('med_user_notes') || '{}');
+        let currentActiveWeekId = 'week1_2';
+        let currentFilter = 'all'; // all, pending, completed
+        let currentSearchQuery = '';
+        let currentQuizIndex = 0;
+        let activeQuizQuestions = [];
+
+        // Initialization
+        window.onload = function() {
+            initTheme();
+            renderWeekNavigation();
+            renderModuleView(currentActiveWeekId);
+            updateDashboardStats();
+            populateNoteSelect();
+        };
+
+        // Theme Toggle Handler
+        function toggleDarkMode() {
+            document.documentElement.classList.toggle('dark');
+            const isDark = document.documentElement.classList.contains('dark');
+            localStorage.setItem('med_dark_theme', isDark);
+            document.getElementById('themeIcon').className = isDark ? 'fa-solid fa-sun text-amber-400' : 'fa-solid fa-moon';
         }
 
-        function renderIndexView() {
-            const container = document.getElementById('index-view');
-            if (!container) return;
+        function initTheme() {
+            if (localStorage.getItem('med_dark_theme') === 'true' || 
+                (!('med_dark_theme' in localStorage) && window.matchMedia('(prefers-color-scheme: dark)').matches)) {
+                document.documentElement.classList.add('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-sun text-amber-400';
+            } else {
+                document.documentElement.classList.remove('dark');
+                document.getElementById('themeIcon').className = 'fa-solid fa-moon';
+            }
+        }
 
-            let html = `
-            <table class="w-full text-left text-xs border-collapse">
-                <thead>
-                    <tr class="border-b border-slate-200 text-slate-500 uppercase font-bold tracking-wider bg-slate-50/80">
-                        <th class="py-3 px-4">Week</th>
-                        <th class="py-3 px-4">System</th>
-                        <th class="py-3 px-4">Core Conditions / Topics</th>
-                        <th class="py-3 px-4">Weekly Assignment</th>
-                        <th class="py-3 px-4 text-center">Action</th>
-                    </tr>
-                </thead>
-                <tbody class="divide-y divide-slate-200 text-slate-700">
-            `;
+        // Render Week Navigation Sidebar
+        function renderWeekNavigation() {
+            const container = document.getElementById('weekNavContainer');
+            container.innerHTML = '';
 
             SYLLABUS_DATA.forEach(week => {
-                const allTopics = getAllTopicsList(week);
-                const isAssgDone = !!state.completedAssignments[week.week];
+                const totalTopics = week.topicsGrouped.reduce((sum, g) => sum + g.topics.length, 0);
+                const doneTopics = week.topicsGrouped.reduce((sum, g) => {
+                    return sum + g.topics.filter(t => completedTopics[getTopicKey(week.id, t)]).length;
+                }, 0);
 
-                html += `
-                <tr class="hover:bg-slate-50 transition-colors">
-                    <td class="py-4 px-4 font-bold text-teal-700">Week ${week.week}</td>
-                    <td class="py-4 px-4 font-semibold text-slate-900 whitespace-nowrap">${week.system}</td>
-                    <td class="py-4 px-4 max-w-md">
-                        <div class="flex flex-wrap gap-1">
-                            ${allTopics.map(t => `<span class="px-2 py-0.5 rounded bg-slate-100 text-slate-700 border border-slate-200">${t}</span>`).join('')}
+                const assignmentDone = !!completedAssignments[week.id];
+                const isFinished = doneTopics === totalTopics && assignmentDone;
+
+                // Filter logic
+                if (currentFilter === 'pending' && isFinished) return;
+                if (currentFilter === 'completed' && !isFinished) return;
+
+                const isActive = week.id === currentActiveWeekId;
+                const percent = Math.round((doneTopics / totalTopics) * 100);
+
+                const btn = document.createElement('button');
+                btn.onclick = () => selectWeek(week.id);
+                btn.className = `w-full text-left p-2.5 rounded-xl transition-all border ${
+                    isActive 
+                    ? 'bg-slate-900 text-white border-slate-900 dark:bg-sky-600 dark:border-sky-500 shadow-md' 
+                    : 'bg-white dark:bg-slate-800 hover:bg-slate-50 dark:hover:bg-slate-700/60 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
+                }`;
+
+                btn.innerHTML = `
+                    <div class="flex items-center justify-between">
+                        <div class="flex items-center space-x-2.5">
+                            <div class="w-7 h-7 rounded-lg flex items-center justify-center text-xs ${isActive ? 'bg-white/20 text-white' : 'bg-slate-100 dark:bg-slate-700 text-slate-600 dark:text-slate-300'}">
+                                <i class="fa-solid ${week.icon}"></i>
+                            </div>
+                            <div>
+                                <p class="text-xs font-bold leading-tight">${week.weekLabel}</p>
+                                <p class="text-[11px] opacity-80 font-medium truncate max-w-[130px]">${week.system}</p>
+                            </div>
                         </div>
-                    </td>
-                    <td class="py-4 px-4 font-medium text-amber-800">
-                        ${week.assignment.title}
-                        <div class="text-[10px] text-slate-400 mt-0.5">${isAssgDone ? 'Status: Complete' : 'Status: Pending'}</div>
-                    </td>
-                    <td class="py-4 px-4 text-center">
-                        <button onclick="openWeekModal(${week.week})" class="px-3 py-1.5 rounded-lg bg-teal-600 hover:bg-teal-700 text-white font-bold transition-all shadow-sm">
-                            View
-                        </button>
-                    </td>
-                </tr>
+                        <div class="text-right">
+                            ${assignmentDone ? '<span class="inline-block text-[10px] text-emerald-400 dark:text-emerald-300 font-semibold" title="Assignment Done"><i class="fa-solid fa-check"></i></span>' : ''}
+                            <span class="block text-[10px] font-bold ${isActive ? 'text-sky-200' : 'text-slate-400'}">${percent}%</span>
+                        </div>
+                    </div>
                 `;
+                container.appendChild(btn);
             });
-
-            html += `</tbody></table>`;
-            container.innerHTML = html;
-            lucide.createIcons();
         }
 
-        function setViewMode(mode) {
-            state.viewMode = mode;
+        // Select a week
+        function selectWeek(weekId) {
+            currentActiveWeekId = weekId;
+            renderWeekNavigation();
+            renderModuleView(weekId);
+            updateActiveWeekStat();
+        }
 
-            const gridView = document.getElementById('grid-view');
-            const timelineView = document.getElementById('timeline-view');
-            const indexView = document.getElementById('index-view');
+        function setFilter(filterType) {
+            currentFilter = filterType;
+            ['all', 'pending', 'completed'].forEach(f => {
+                const btn = document.getElementById(`filter${f.charAt(0).toUpperCase() + f.slice(1)}Btn`);
+                if (f === filterType) {
+                    btn.className = 'py-1 px-2 rounded-md bg-white dark:bg-slate-800 shadow-xs text-slate-800 dark:text-slate-200 font-semibold transition text-center';
+                } else {
+                    btn.className = 'py-1 px-2 rounded-md hover:bg-white/50 text-slate-500 dark:text-slate-400 transition text-center';
+                }
+            });
+            renderWeekNavigation();
+        }
 
-            const btnGrid = document.getElementById('view-btn-grid');
-            const btnTimeline = document.getElementById('view-btn-timeline');
-            const btnIndex = document.getElementById('view-btn-index');
+        // Helper key for topic state
+        function getTopicKey(weekId, topicName) {
+            return `${weekId}__${topicName.replace(/\s+/g, '_')}`;
+        }
 
-            [btnGrid, btnTimeline, btnIndex].forEach(b => {
-                b.className = "px-3 py-1.5 text-xs font-semibold rounded-lg text-slate-600 hover:text-slate-900 transition-all flex items-center gap-1.5";
+        // Render Active Module Card View
+        function renderModuleView(weekId) {
+            const moduleContainer = document.getElementById('moduleCardContainer');
+            const week = SYLLABUS_DATA.find(w => w.id === weekId);
+
+            if (!week) return;
+
+            const totalTopics = week.topicsGrouped.reduce((sum, g) => sum + g.topics.length, 0);
+            const doneTopics = week.topicsGrouped.reduce((sum, g) => {
+                return sum + g.topics.filter(t => completedTopics[getTopicKey(week.id, t)]).length;
+            }, 0);
+
+            const isAssignmentDone = !!completedAssignments[week.id];
+
+            let html = `
+                <!-- Module Header Banner -->
+                <div class="bg-gradient-to-r ${week.bgGradient} p-6 text-white relative">
+                    <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4">
+                        <div class="space-y-1">
+                            <div class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-semibold bg-white/20 backdrop-blur text-white">
+                                <i class="fa-solid ${week.icon} mr-1.5"></i> ${week.weekLabel} Focus
+                            </div>
+                            <h2 class="text-2xl sm:text-3xl font-extrabold tracking-tight">${week.system}</h2>
+                            <p class="text-white/90 text-xs sm:text-sm max-w-2xl leading-relaxed">${week.description}</p>
+                        </div>
+                        
+                        <div class="bg-white/10 backdrop-blur rounded-xl p-3 text-right flex sm:flex-col justify-between items-center sm:items-end border border-white/20 min-w-[120px]">
+                            <span class="text-xs text-white/80 font-medium">Topic Progress</span>
+                            <span class="text-2xl font-black">${doneTopics}/${totalTopics}</span>
+                            <span class="text-[10px] font-bold text-white/90 uppercase tracking-wider">${Math.round((doneTopics/totalTopics)*100)}% Complete</span>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="p-6 space-y-8">
+                    <!-- Weekly Recurring Sessions (TBL / CC / CBD) Row -->
+                    <div>
+                        <h3 class="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3 flex items-center gap-2">
+                            <i class="fa-solid fa-clock-rotate-left text-sky-500"></i> Weekly Clinical Learning Components
+                        </h3>
+                        <div class="grid grid-cols-1 md:grid-cols-3 gap-3">
+                            <!-- TBL -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs font-bold text-sky-700 dark:text-sky-400">
+                                    <span class="px-1.5 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-800 dark:text-sky-300">TBL</span> Team Based Learning
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">${week.tblFocus}</p>
+                            </div>
+
+                            <!-- CC -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs font-bold text-emerald-700 dark:text-emerald-400">
+                                    <span class="px-1.5 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-800 dark:text-emerald-300">CC</span> Clinical Competencies
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">${week.ccFocus}</p>
+                            </div>
+
+                            <!-- CBD -->
+                            <div class="bg-slate-50 dark:bg-slate-900/60 p-3.5 rounded-xl border border-slate-200 dark:border-slate-700/60 space-y-1">
+                                <div class="flex items-center gap-1.5 text-xs font-bold text-purple-700 dark:text-purple-400">
+                                    <span class="px-1.5 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-800 dark:text-purple-300">CBD</span> Case Based Discussion
+                                </div>
+                                <p class="text-xs text-slate-600 dark:text-slate-300">${week.cbdFocus}</p>
+                            </div>
+                        </div>
+                    </div>
+
+                    <!-- Highlighted Weekly Assignment Submission Card -->
+                    <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-2 ${isAssignmentDone ? 'border-emerald-500/50' : 'border-amber-400 dark:border-amber-700'} rounded-2xl p-5 space-y-4 shadow-sm relative">
+                        <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-3 border-b border-amber-200/60 dark:border-amber-800/40 pb-3">
+                            <div class="flex items-center space-x-3">
+                                <div class="w-10 h-10 rounded-xl bg-amber-500 text-white flex items-center justify-center text-lg shadow-sm">
+                                    <i class="fa-solid fa-file-signature"></i>
+                                </div>
+                                <div>
+                                    <span class="text-[10px] font-extrabold uppercase tracking-widest text-amber-700 dark:text-amber-400">Mandatory Weekly Assignment</span>
+                                    <h3 class="text-lg font-bold text-slate-800 dark:text-amber-100">${week.assignment.title}</h3>
+                                </div>
+                            </div>
+                            <!-- Submission Toggle -->
+                            <button onclick="toggleAssignment('${week.id}')" class="px-4 py-2 rounded-xl text-xs font-bold transition flex items-center justify-center space-x-2 ${
+                                isAssignmentDone 
+                                ? 'bg-emerald-600 hover:bg-emerald-700 text-white shadow-sm' 
+                                : 'bg-amber-600 hover:bg-amber-700 text-white shadow-sm'
+                            }">
+                                <i class="fa-solid ${isAssignmentDone ? 'fa-circle-check' : 'fa-upload'}"></i>
+                                <span>${isAssignmentDone ? 'Assignment Submitted' : 'Mark as Submitted'}</span>
+                            </button>
+                        </div>
+
+                        <p class="text-xs text-slate-700 dark:text-slate-300 leading-relaxed">${week.assignment.description}</p>
+
+                        <!-- Key tasks checklist -->
+                        <div class="space-y-1.5 bg-white/60 dark:bg-slate-900/40 p-3 rounded-xl border border-amber-200/50 dark:border-amber-900/30">
+                            <span class="text-[11px] font-bold text-amber-800 dark:text-amber-300 uppercase tracking-wider">Required Submission Objectives:</span>
+                            <ul class="space-y-1 text-xs text-slate-600 dark:text-slate-300">
+                                ${week.assignment.tasks.map(task => `
+                                    <li class="flex items-start space-x-2">
+                                        <i class="fa-solid fa-caret-right text-amber-500 mt-0.5"></i>
+                                        <span>${task}</span>
+                                    </li>
+                                `).join('')}
+                            </ul>
+                        </div>
+                    </div>
+
+                    <!-- Topics Checklist Section -->
+                    <div class="space-y-6">
+                        <div class="flex items-center justify-between">
+                            <h3 class="text-base font-bold text-slate-800 dark:text-white flex items-center gap-2">
+                                <i class="fa-solid fa-book-open text-sky-500"></i> Core Topics Checklist
+                            </h3>
+                            <button onclick="toggleAllTopicsInWeek('${week.id}')" class="text-xs font-semibold text-sky-600 dark:text-sky-400 hover:underline">
+                                Select / Deselect All
+                            </button>
+                        </div>
+
+                        ${week.topicsGrouped.map(group => {
+                            return `
+                                <div class="space-y-3">
+                                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-700/80 pb-1.5">${group.category}</h4>
+                                    <div class="grid grid-cols-1 md:grid-cols-2 gap-2.5">
+                                        ${group.topics.map(topic => {
+                                            const topicKey = getTopicKey(week.id, topic);
+                                            const isDone = !!completedTopics[topicKey];
+
+                                            // Highlight search match
+                                            const isMatch = currentSearchQuery && topic.toLowerCase().includes(currentSearchQuery.toLowerCase());
+                                            
+                                            return `
+                                                <div onclick="toggleTopic('${topicKey}')" 
+                                                    class="p-3 rounded-xl border transition-all cursor-pointer flex items-center justify-between group ${
+                                                    isDone 
+                                                    ? 'bg-sky-50/50 dark:bg-sky-950/20 border-sky-200 dark:border-sky-900/50 text-slate-700 dark:text-slate-300' 
+                                                    : isMatch
+                                                    ? 'bg-amber-50 dark:bg-amber-950/40 border-amber-300 dark:border-amber-700 font-semibold'
+                                                    : 'bg-white dark:bg-slate-800/80 hover:bg-slate-50 dark:hover:bg-slate-700/50 border-slate-200 dark:border-slate-700 text-slate-800 dark:text-slate-200'
+                                                }">
+                                                    <div class="flex items-center space-x-3">
+                                                        <div class="w-5 h-5 rounded-md border flex items-center justify-center transition-colors ${
+                                                            isDone 
+                                                            ? 'bg-sky-600 border-sky-600 text-white' 
+                                                            : 'border-slate-300 dark:border-slate-600 group-hover:border-sky-500'
+                                                        }">
+                                                            ${isDone ? '<i class="fa-solid fa-check text-xs"></i>' : ''}
+                                                        </div>
+                                                        <span class="text-xs font-medium leading-snug ${isDone ? 'line-through text-slate-400 dark:text-slate-500' : ''}">${topic}</span>
+                                                    </div>
+                                                    <i class="fa-solid fa-chevron-right text-[10px] text-slate-300 dark:text-slate-600 group-hover:text-slate-500 transition-transform"></i>
+                                                </div>
+                                            `;
+                                        }).join('')}
+                                    </div>
+                                </div>
+                            `;
+                        }).join('')}
+                    </div>
+                </div>
+            `;
+
+            moduleContainer.innerHTML = html;
+        }
+
+        // Topic Toggle
+        function toggleTopic(topicKey) {
+            completedTopics[topicKey] = !completedTopics[topicKey];
+            localStorage.setItem('med_completed_topics', JSON.stringify(completedTopics));
+            renderModuleView(currentActiveWeekId);
+            renderWeekNavigation();
+            updateDashboardStats();
+        }
+
+        // Toggle all topics in active week
+        function toggleAllTopicsInWeek(weekId) {
+            const week = SYLLABUS_DATA.find(w => w.id === weekId);
+            if (!week) return;
+
+            const allTopics = [];
+            week.topicsGrouped.forEach(g => g.topics.forEach(t => allTopics.push(getTopicKey(weekId, t))));
+
+            const anyUnfinished = allTopics.some(k => !completedTopics[k]);
+
+            allTopics.forEach(k => {
+                completedTopics[k] = anyUnfinished;
             });
 
-            gridView.classList.add('hidden');
-            timelineView.classList.add('hidden');
-            indexView.classList.add('hidden');
+            localStorage.setItem('med_completed_topics', JSON.stringify(completedTopics));
+            renderModuleView(currentActiveWeekId);
+            renderWeekNavigation();
+            updateDashboardStats();
+        }
 
-            if (mode === 'grid') {
-                gridView.classList.remove('hidden');
-                btnGrid.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-600 text-white shadow-sm transition-all flex items-center gap-1.5";
-                renderGridView();
-            } else if (mode === 'timeline') {
-                timelineView.classList.remove('hidden');
-                btnTimeline.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-600 text-white shadow-sm transition-all flex items-center gap-1.5";
-                renderTimelineView();
-            } else if (mode === 'index') {
-                indexView.classList.remove('hidden');
-                btnIndex.className = "px-3 py-1.5 text-xs font-semibold rounded-lg bg-teal-600 text-white shadow-sm transition-all flex items-center gap-1.5";
-                renderIndexView();
+        // Assignment Toggle
+        function toggleAssignment(weekId) {
+            completedAssignments[weekId] = !completedAssignments[weekId];
+            localStorage.setItem('med_completed_assignments', JSON.stringify(completedAssignments));
+            renderModuleView(currentActiveWeekId);
+            renderWeekNavigation();
+            updateDashboardStats();
+        }
+
+        // Update Stats
+        function updateDashboardStats() {
+            let totalTopicsCount = 0;
+            let doneTopicsCount = 0;
+
+            SYLLABUS_DATA.forEach(week => {
+                week.topicsGrouped.forEach(group => {
+                    group.topics.forEach(t => {
+                        totalTopicsCount++;
+                        if (completedTopics[getTopicKey(week.id, t)]) {
+                            doneTopicsCount++;
+                        }
+                    });
+                });
+            });
+
+            const assignmentsCount = SYLLABUS_DATA.length; // 8 modules
+            const doneAssignmentsCount = Object.values(completedAssignments).filter(Boolean).length;
+
+            document.getElementById('topicsStat').innerText = `${doneTopicsCount} / ${totalTopicsCount}`;
+            document.getElementById('assignmentsStat').innerText = `${doneAssignmentsCount} / ${assignmentsCount}`;
+
+            const topicPercent = totalTopicsCount ? Math.round((doneTopicsCount / totalTopicsCount) * 100) : 0;
+            const assignmentPercent = assignmentsCount ? Math.round((doneAssignmentsCount / assignmentsCount) * 100) : 0;
+
+            document.getElementById('topicsProgressBar').style.width = `${topicPercent}%`;
+            document.getElementById('assignmentsProgressBar').style.width = `${assignmentPercent}%`;
+
+            // Weighted overall rotation progress: 60% topics, 40% assignments
+            const overall = Math.round((topicPercent * 0.6) + (assignmentPercent * 0.4));
+            document.getElementById('overallStat').innerText = `${overall}%`;
+
+            updateActiveWeekStat();
+        }
+
+        function updateActiveWeekStat() {
+            const currentWeek = SYLLABUS_DATA.find(w => w.id === currentActiveWeekId);
+            if (currentWeek) {
+                document.getElementById('activeWeekStat').innerText = currentWeek.weekLabel;
             }
         }
 
-        function handleSearch() {
-            const val = document.getElementById('search-input').value;
-            state.searchQuery = val;
-            const clearBtn = document.getElementById('clear-search-btn');
-            if (val.trim()) {
-                clearBtn.classList.remove('hidden');
+        // Search Filter Logic
+        function handleSearch(query) {
+            currentSearchQuery = query.trim();
+            const clearBtn = document.getElementById('clearSearchBtn');
+            const searchHeader = document.getElementById('searchResultHeader');
+            const display = document.getElementById('searchQueryDisplay');
+
+            if (currentSearchQuery.length > 0) {
+                if (clearBtn) clearBtn.classList.remove('hidden');
+                searchHeader.classList.remove('hidden');
+                display.innerText = `"${currentSearchQuery}"`;
+
+                // Auto select first week with matching topic if not in current
+                const matchingWeek = SYLLABUS_DATA.find(w => 
+                    w.topicsGrouped.some(g => 
+                        g.topics.some(t => t.toLowerCase().includes(currentSearchQuery.toLowerCase()))
+                    )
+                );
+
+                if (matchingWeek && matchingWeek.id !== currentActiveWeekId) {
+                    selectWeek(matchingWeek.id);
+                } else {
+                    renderModuleView(currentActiveWeekId);
+                }
             } else {
-                clearBtn.classList.add('hidden');
+                if (clearBtn) clearBtn.classList.add('hidden');
+                searchHeader.classList.add('hidden');
+                renderModuleView(currentActiveWeekId);
             }
-
-            if (state.viewMode === 'grid') renderGridView();
-            else if (state.viewMode === 'timeline') renderTimelineView();
-            else if (state.viewMode === 'index') renderIndexView();
         }
 
         function clearSearch() {
-            document.getElementById('search-input').value = '';
-            handleSearch();
+            document.getElementById('searchInput').value = '';
+            document.getElementById('mobileSearchInput').value = '';
+            handleSearch('');
         }
 
-        function applyFilters() {
-            state.filterSystem = document.getElementById('filter-system').value;
-            if (state.viewMode === 'grid') renderGridView();
-            else if (state.viewMode === 'timeline') renderTimelineView();
-            else if (state.viewMode === 'index') renderIndexView();
-        }
-
-        function openWeekModal(weekNumber) {
-            state.activeModalWeek = weekNumber;
-            const weekData = SYLLABUS_DATA.find(w => w.week === weekNumber);
-            if (!weekData) return;
-
-            const modal = document.getElementById('week-modal');
-            const badge = document.getElementById('modal-week-badge');
-            const systemTitle = document.getElementById('modal-system-title');
-            const modalTitle = document.getElementById('modal-title');
-
-            badge.innerText = `Week ${weekData.week}`;
-            badge.className = `px-2.5 py-0.5 rounded-full text-xs font-bold uppercase tracking-wide ${weekData.badgeBg}`;
-            systemTitle.innerText = "Internal Medicine System Posting";
-            modalTitle.innerText = weekData.system;
-
-            renderModalTopics(weekData);
-            renderModalSessions(weekData);
-            renderModalAssignment(weekData);
-            renderModalDiagnosticTool(weekData);
-
-            const notesInput = document.getElementById('modal-notes-input');
-            if (notesInput) {
-                notesInput.value = state.notes[weekNumber] || '';
-            }
-
-            switchModalTab('topics');
-
-            modal.classList.remove('hidden');
-            lucide.createIcons();
-        }
-
-        function closeWeekModal() {
-            document.getElementById('week-modal').classList.add('hidden');
-            state.activeModalWeek = null;
-            if (state.viewMode === 'grid') renderGridView();
-            else if (state.viewMode === 'timeline') renderTimelineView();
-            else if (state.viewMode === 'index') renderIndexView();
-        }
-
-        function switchModalTab(tab) {
-            const tabs = ['topics', 'assignment', 'tool', 'notes'];
-            tabs.forEach(t => {
-                const btn = document.getElementById(`modal-tab-${t}`);
-                const content = document.getElementById(`tab-content-${t}`);
-                if (t === tab) {
-                    btn.className = "py-3 text-teal-700 border-b-2 border-teal-600 flex items-center gap-2 font-bold";
-                    content.classList.remove('hidden');
-                } else {
-                    btn.className = "py-3 text-slate-500 border-b-2 border-transparent hover:text-slate-800 flex items-center gap-2 font-semibold";
-                    content.classList.add('hidden');
-                }
-            });
-        }
-
-        function renderModalTopics(weekData) {
-            const container = document.getElementById('modal-topics-list');
-            const progressEl = document.getElementById('modal-topics-progress');
-            const allTopics = getAllTopicsList(weekData);
-
-            let html = '';
-            let doneCount = 0;
-
-            allTopics.forEach((topic, idx) => {
-                const key = `${weekData.week}_${idx}`;
-                const isChecked = !!state.completedTopics[key];
-                if (isChecked) doneCount++;
-
-                html += `
-                <label class="flex items-start gap-3 p-3 rounded-xl bg-white border border-slate-200 hover:border-slate-300 cursor-pointer transition-all shadow-sm">
-                    <input 
-                        type="checkbox" 
-                        ${isChecked ? 'checked' : ''} 
-                        onchange="toggleTopicCheck('${key}')"
-                        class="mt-1 w-4 h-4 rounded text-teal-600 focus:ring-teal-500 bg-slate-100 border-slate-300"
-                    >
-                    <span class="text-xs ${isChecked ? 'line-through text-slate-400' : 'text-slate-800'} font-medium leading-relaxed">
-                        ${topic}
-                    </span>
-                </label>
-                `;
-            });
-
-            container.innerHTML = html;
-            progressEl.innerText = `${doneCount}/${allTopics.length} Completed`;
-        }
-
-        function toggleTopicCheck(key) {
-            state.completedTopics[key] = !state.completedTopics[key];
-            saveState();
-            if (state.activeModalWeek) {
-                const weekData = SYLLABUS_DATA.find(w => w.week === state.activeModalWeek);
-                renderModalTopics(weekData);
-            }
-        }
-
-        function renderModalSessions(weekData) {
-            const container = document.getElementById('modal-sessions-container');
-            const sessions = [
-                { id: 'tbl', name: 'TBL Session', desc: 'Team-Based Learning', icon: 'users', color: 'text-cyan-600' },
-                { id: 'cc', name: 'CC Session', desc: 'Clinical Competencies', icon: 'activity', color: 'text-emerald-600' },
-                { id: 'cbd', name: 'CBD Session', desc: 'Case-Based Discussion', icon: 'message-square', color: 'text-indigo-600' }
-            ];
-
-            let html = '';
-            sessions.forEach(s => {
-                const key = `${weekData.week}_${s.id}`;
-                const isChecked = !!state.completedSessions[key];
-
-                html += `
-                <label class="flex items-center gap-3 p-3.5 rounded-xl bg-white border border-slate-200 hover:border-slate-300 cursor-pointer transition-all shadow-sm">
-                    <input 
-                        type="checkbox" 
-                        ${isChecked ? 'checked' : ''} 
-                        onchange="toggleSessionCheck('${key}')"
-                        class="w-4 h-4 rounded text-teal-600 focus:ring-teal-500 bg-slate-100 border-slate-300"
-                    >
-                    <div>
-                        <div class="text-xs font-bold text-slate-800 flex items-center gap-1.5">
-                            <i data-lucide="${s.icon}" class="w-3.5 h-3.5 ${s.color}"></i> ${s.name}
-                        </div>
-                        <p class="text-[11px] text-slate-500">${s.desc}</p>
-                    </div>
-                </label>
-                `;
-            });
-
-            container.innerHTML = html;
-        }
-
-        function toggleSessionCheck(key) {
-            state.completedSessions[key] = !state.completedSessions[key];
-            saveState();
-            if (state.activeModalWeek) {
-                const weekData = SYLLABUS_DATA.find(w => w.week === state.activeModalWeek);
-                renderModalSessions(weekData);
-            }
-        }
-
-        function renderModalAssignment(weekData) {
-            document.getElementById('modal-assignment-name').innerText = weekData.assignment.title;
-            document.getElementById('modal-assignment-desc').innerText = weekData.assignment.description;
-
-            const isSubmitted = !!state.completedAssignments[weekData.week];
-            const btn = document.getElementById('modal-assignment-toggle');
-
-            if (isSubmitted) {
-                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-emerald-100 text-emerald-800 border border-emerald-300 hover:bg-emerald-200 transition-all flex items-center gap-2 shadow-sm";
-                btn.innerHTML = `<i data-lucide="check-circle-2" class="w-4 h-4"></i> Assignment Completed`;
-            } else {
-                btn.className = "px-4 py-2 rounded-xl text-xs font-bold bg-amber-100 text-amber-800 border border-amber-300 hover:bg-amber-200 transition-all flex items-center gap-2 shadow-sm";
-                btn.innerHTML = `<i data-lucide="clock" class="w-4 h-4"></i> Mark as Submitted`;
-            }
-
-            const stepsContainer = document.getElementById('modal-assignment-steps');
-            let stepsHtml = '';
-            weekData.assignment.guidelines.forEach(guide => {
-                stepsHtml += `
-                <div class="p-3 rounded-xl bg-white border border-slate-200 flex items-start gap-2.5 shadow-sm">
-                    <i data-lucide="check-circle" class="w-4 h-4 text-teal-600 shrink-0 mt-0.5"></i>
-                    <span class="leading-relaxed text-slate-700">${guide}</span>
-                </div>
-                `;
-            });
-            stepsContainer.innerHTML = stepsHtml;
-        }
-
-        function toggleCurrentAssignmentStatus() {
-            if (!state.activeModalWeek) return;
-            const week = state.activeModalWeek;
-            state.completedAssignments[week] = !state.completedAssignments[week];
-            saveState();
-
-            const weekData = SYLLABUS_DATA.find(w => w.week === week);
-            renderModalAssignment(weekData);
-        }
-
-        function renderModalDiagnosticTool(weekData) {
-            const container = document.getElementById('interactive-tool-container');
-            if (!container) return;
-
-            let html = '';
-
-            if (weekData.toolType === 'nephro') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-teal-800 flex items-center gap-2">
-                        <i data-lucide="calculator" class="w-4 h-4"></i> Renal Profile & UFEME Quick Interpreter
-                    </h4>
-                    <p class="text-xs text-slate-500">Select clinical findings to generate diagnostic interpretation:</p>
-
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
-                        <div>
-                            <label class="block text-slate-600 font-bold mb-1">Urine Protein Dipstick:</label>
-                            <select id="tool-nephro-protein" onchange="calcNephroTool()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 shadow-sm">
-                                <option value="0">Negative / Trace</option>
-                                <option value="1">1+ to 2+ (Mild)</option>
-                                <option value="3">3+ to 4+ (Nephrotic Range >3.5g/day)</option>
-                            </select>
-                        </div>
-                        <div>
-                            <label class="block text-slate-600 font-bold mb-1">Urine Microscopy:</label>
-                            <select id="tool-nephro-micro" onchange="calcNephroTool()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 shadow-sm">
-                                <option value="normal">Normal / Bland sediment</option>
-                                <option value="rbc_casts">RBC Casts / Dysmorphic Hematuria</option>
-                                <option value="wbc_casts">WBC Casts / Pyuria (Leukocyte Esterase +)</option>
-                                <option value="granular">Muddy Brown Granular Casts</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div id="nephro-result" class="p-3.5 rounded-xl bg-slate-50 border border-teal-200 text-xs space-y-1 font-mono text-slate-800">
-                        <span class="text-teal-700 font-bold">Impression:</span> Select parameters above to calculate...
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'cardio') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-rose-800 flex items-center gap-2">
-                        <i data-lucide="activity" class="w-4 h-4"></i> Systematic 7-Step ECG Analysis Matrix
-                    </h4>
-                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-2 text-xs">
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-rose-700 block mb-1">1. Rate & Rhythm</strong>
-                            <p class="text-slate-600">Regular: 300 / R-R big squares.<br>Irregular: Count QRS in 30 squares (6s) x 10.</p>
-                        </div>
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-rose-700 block mb-1">2. Axis Check</strong>
-                            <p class="text-slate-600">Lead I (+), aVF (+): Normal.<br>Lead I (+), aVF (-): Left Axis Deviation.</p>
-                        </div>
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-rose-700 block mb-1">3. P Wave & PR Interval</strong>
-                            <p class="text-slate-600">PR 120-200ms (3-5 small boxes). >200ms = 1st Degree AV Block.</p>
-                        </div>
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-rose-700 block mb-1">4. Ischemic Changes</strong>
-                            <p class="text-slate-600">ST Elevation &ge;1mm in &ge;2 contiguous leads = STEMI emergency!</p>
-                        </div>
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'haem_id') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-purple-800 flex items-center gap-2">
-                        <i data-lucide="microscope" class="w-4 h-4"></i> Anemia MCV Differential Tool
-                    </h4>
-                    <div class="flex items-center gap-3">
-                        <label class="text-xs text-slate-700 font-semibold">Enter MCV (fL):</label>
-                        <input type="number" id="mcv-input" placeholder="e.g. 72" oninput="calcMcvTool()" class="bg-white border border-slate-300 rounded-lg px-3 py-1.5 text-xs text-slate-800 w-28 focus:outline-none focus:ring-1 focus:ring-purple-500 shadow-sm">
-                    </div>
-                    <div id="mcv-result" class="p-3.5 rounded-xl bg-slate-50 border border-purple-200 text-xs font-mono text-slate-800">
-                        Enter MCV value above...
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'respo') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-sky-800 flex items-center gap-2">
-                        <i data-lucide="wind" class="w-4 h-4"></i> Interactive ABG Analyzer
-                    </h4>
-                    <div class="grid grid-cols-3 gap-2 text-xs">
-                        <div>
-                            <label class="block text-slate-600 mb-1">pH (7.35-7.45):</label>
-                            <input type="number" step="0.01" id="abg-ph" value="7.28" oninput="calcAbgTool()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 shadow-sm">
-                        </div>
-                        <div>
-                            <label class="block text-slate-600 mb-1">PaCO2 (35-45 mmHg):</label>
-                            <input type="number" id="abg-paco2" value="55" oninput="calcAbgTool()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 shadow-sm">
-                        </div>
-                        <div>
-                            <label class="block text-slate-600 mb-1">HCO3 (22-26 mEq/L):</label>
-                            <input type="number" id="abg-hco3" value="25" oninput="calcAbgTool()" class="w-full bg-white border border-slate-300 rounded-lg p-2 text-slate-800 shadow-sm">
-                        </div>
-                    </div>
-                    <div id="abg-result" class="p-3.5 rounded-xl bg-slate-50 border border-sky-200 text-xs font-mono text-sky-800">
-                        Calculating ABG...
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'gastro') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-amber-800 flex items-center gap-2">
-                        <i data-lucide="pie-chart" class="w-4 h-4"></i> LFT R-Factor Injury Pattern Classifier
-                    </h4>
-                    <p class="text-xs text-slate-500">R = (ALT / ULN) / (ALP / ULN)</p>
-                    <div class="grid grid-cols-2 gap-2 text-xs">
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-amber-800">R &gt; 5: Hepatocellular Pattern</strong>
-                            <p class="text-slate-600 mt-0.5">Viral hepatitis, acetaminophen toxicity, ischemic hepatitis.</p>
-                        </div>
-                        <div class="p-3 bg-slate-50 rounded-xl border border-slate-200">
-                            <strong class="text-amber-800">R &lt; 2: Cholestatic Pattern</strong>
-                            <p class="text-slate-600 mt-0.5">Biliary obstruction, choledocholithiasis, primary biliary cholangitis.</p>
-                        </div>
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'endo') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-orange-800 flex items-center gap-2">
-                        <i data-lucide="alert-triangle" class="w-4 h-4"></i> DKA vs HHS Diagnostic Matrix
-                    </h4>
-                    <div class="overflow-x-auto text-xs">
-                        <table class="w-full text-left border-collapse border border-slate-200">
-                            <thead>
-                                <tr class="bg-slate-100 text-orange-800">
-                                    <th class="p-2 border border-slate-200">Parameter</th>
-                                    <th class="p-2 border border-slate-200">DKA</th>
-                                    <th class="p-2 border border-slate-200">HHS</th>
-                                </tr>
-                            </thead>
-                            <tbody class="text-slate-700">
-                                <tr>
-                                    <td class="p-2 border border-slate-200 font-bold">Plasma Glucose</td>
-                                    <td class="p-2 border border-slate-200">&gt;11-13.9 mmol/L</td>
-                                    <td class="p-2 border border-slate-200">&gt;30 mmol/L (Severe)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 border border-slate-200 font-bold">Arterial pH</td>
-                                    <td class="p-2 border border-slate-200">&lt; 7.30 (Acidemia)</td>
-                                    <td class="p-2 border border-slate-200">&gt; 7.30 (Normal)</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 border border-slate-200 font-bold">Serum Bicarbonate</td>
-                                    <td class="p-2 border border-slate-200">&lt; 18 mEq/L</td>
-                                    <td class="p-2 border border-slate-200">&gt; 18 mEq/L</td>
-                                </tr>
-                                <tr>
-                                    <td class="p-2 border border-slate-200 font-bold">Ketones</td>
-                                    <td class="p-2 border border-slate-200 font-bold text-rose-700">Positive +++</td>
-                                    <td class="p-2 border border-slate-200">Negative / Trace</td>
-                                </tr>
-                            </tbody>
-                        </table>
-                    </div>
-                </div>
-                `;
-            } else if (weekData.toolType === 'rheum_neuro') {
-                html = `
-                <div class="space-y-4">
-                    <h4 class="text-sm font-bold text-indigo-800 flex items-center gap-2">
-                        <i data-lucide="shield-alert" class="w-4 h-4"></i> Headache Red Flags (SNOOP4 Checklist)
-                    </h4>
-                    <div class="space-y-2 text-xs">
-                        <label class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200">
-                            <input type="checkbox" class="text-indigo-600 rounded">
-                            <span class="text-slate-700"><strong class="text-indigo-700">S</strong>ystemic symptoms (Fever, weight loss, malignancy)</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200">
-                            <input type="checkbox" class="text-indigo-600 rounded">
-                            <span class="text-slate-700"><strong class="text-indigo-700">N</strong>eurologic deficits or altered consciousness</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200">
-                            <input type="checkbox" class="text-indigo-600 rounded">
-                            <span class="text-slate-700"><strong class="text-indigo-700">O</strong>nset sudden / Thunderclap (Peaks within seconds)</span>
-                        </label>
-                        <label class="flex items-center gap-2 p-2 rounded bg-slate-50 border border-slate-200">
-                            <input type="checkbox" class="text-indigo-600 rounded">
-                            <span class="text-slate-700"><strong class="text-indigo-700">O</strong>lder age onset (&gt;50 years old)</span>
-                        </label>
-                    </div>
-                </div>
-                `;
-            } else {
-                html = `
-                <div class="text-xs text-slate-500 p-4 text-center">
-                    Review emergency resuscitation pathways (ABCDE, IV/IO access, fluid resuscitation) during ward rounds.
-                </div>
-                `;
-            }
-
-            container.innerHTML = html;
-            lucide.createIcons();
-
-            if (weekData.toolType === 'nephro') calcNephroTool();
-            if (weekData.toolType === 'haem_id') calcMcvTool();
-            if (weekData.toolType === 'respo') calcAbgTool();
-        }
-
-        function calcNephroTool() {
-            const prot = document.getElementById('tool-nephro-protein')?.value;
-            const micro = document.getElementById('tool-nephro-micro')?.value;
-            const res = document.getElementById('nephro-result');
-            if (!res) return;
-
-            if (prot === '3' && micro === 'normal') {
-                res.innerHTML = `<span class="text-emerald-700 font-bold">Impression:</span> High suspicion for <strong>Nephrotic Syndrome</strong> (Minimal change, FSGS, Membranous). Order 24h Urine Protein & Lipid profile.`;
-            } else if (micro === 'rbc_casts') {
-                res.innerHTML = `<span class="text-rose-700 font-bold">Impression:</span> High suspicion for <strong>Nephritic Syndrome / Glomerulonephritis</strong> (IgA Nephropathy, ANCA vasculitis, Lupus Nephritis). Request complement levels (C3/C4).`;
-            } else if (micro === 'granular') {
-                res.innerHTML = `<span class="text-amber-800 font-bold">Impression:</span> Suggestive of <strong>Acute Tubular Necrosis (ATN)</strong> secondary to ischemia or nephrotoxic agents.`;
-            } else if (micro === 'wbc_casts') {
-                res.innerHTML = `<span class="text-cyan-800 font-bold">Impression:</span> Suggestive of <strong>Acute Pyelonephritis</strong> or Acute Interstitial Nephritis (AIN).`;
-            } else {
-                res.innerHTML = `<span class="text-slate-600">Select parameters to see clinical correlation.</span>`;
-            }
-        }
-
-        function calcMcvTool() {
-            const val = parseFloat(document.getElementById('mcv-input')?.value);
-            const res = document.getElementById('mcv-result');
-            if (!res) return;
-
-            if (isNaN(val)) {
-                res.innerHTML = `Enter an MCV value above. Normal reference: 80 - 100 fL.`;
+        // Interactive Quiz Modal Logic
+        function openQuizModal() {
+            const currentWeek = SYLLABUS_DATA.find(w => w.id === currentActiveWeekId);
+            if (!currentWeek || !currentWeek.quizzes || currentWeek.quizzes.length === 0) {
+                alert('No practice questions available for this module yet.');
                 return;
             }
 
-            if (val < 80) {
-                res.innerHTML = `<span class="text-purple-800 font-bold">Microcytic Anemia (&lt;80 fL):</span> Iron Deficiency Anemia (IDA), Thalassemia Trait, Anemia of Chronic Disease, Sideroblastic Anemia. Check Ferritin & Mentzer Index.`;
-            } else if (val >= 80 && val <= 100) {
-                res.innerHTML = `<span class="text-cyan-800 font-bold">Normocytic Anemia (80-100 fL):</span> Acute blood loss, Hemolysis, Chronic Kidney Disease, Bone marrow suppression. Check Reticulocyte Count.`;
-            } else {
-                res.innerHTML = `<span class="text-amber-800 font-bold">Macrocytic Anemia (&gt;100 fL):</span> B12 / Folate deficiency, Alcohol abuse, Liver disease, Hypothyroidism, Myelodysplastic Syndrome (MDS). Check Blood film for hypersegmented neutrophils.`;
-            }
+            activeQuizQuestions = currentWeek.quizzes;
+            currentQuizIndex = 0;
+
+            document.getElementById('quizModalTitle').innerText = `${currentWeek.system} Clinical Practice`;
+            document.getElementById('quizModalSubtitle').innerText = `${currentWeek.weekLabel} High-Yield Assessment`;
+
+            renderQuizQuestion();
+            document.getElementById('quizModal').classList.remove('hidden');
         }
 
-        function calcAbgTool() {
-            const ph = parseFloat(document.getElementById('abg-ph')?.value);
-            const paco2 = parseFloat(document.getElementById('abg-paco2')?.value);
-            const hco3 = parseFloat(document.getElementById('abg-hco3')?.value);
-            const res = document.getElementById('abg-result');
-            if (!res) return;
+        function closeQuizModal() {
+            document.getElementById('quizModal').classList.add('hidden');
+        }
 
-            if (isNaN(ph) || isNaN(paco2) || isNaN(hco3)) {
-                res.innerHTML = `Fill in all values.`;
-                return;
-            }
+        function renderQuizQuestion() {
+            const quizBody = document.getElementById('quizBody');
+            const q = activeQuizQuestions[currentQuizIndex];
 
-            let diagnosis = '';
-            if (ph < 7.35) {
-                if (paco2 > 45 && hco3 >= 22 && hco3 <= 26) {
-                    diagnosis = 'Uncompensated Respiratory Acidosis (e.g. COPD exacerbation, hypoventilation)';
-                } else if (hco3 < 22 && paco2 >= 35 && paco2 <= 45) {
-                    diagnosis = 'Uncompensated Metabolic Acidosis (e.g. DKA, Lactic Acidosis, Renal Failure)';
-                } else if (paco2 > 45 && hco3 > 26) {
-                    diagnosis = 'Partially Compensated Respiratory Acidosis';
-                } else if (hco3 < 22 && paco2 < 35) {
-                    diagnosis = 'Partially Compensated Metabolic Acidosis';
-                } else {
-                    diagnosis = 'Mixed Acidosis / Complex Pattern';
+            if (!q) return;
+
+            let html = `
+                <div class="space-y-3">
+                    <p class="text-xs text-indigo-600 dark:text-indigo-400 font-bold uppercase tracking-wider">Question ${currentQuizIndex + 1} of ${activeQuizQuestions.length}</p>
+                    <p class="text-sm font-semibold text-slate-800 dark:text-white leading-relaxed">${q.q}</p>
+
+                    <div class="space-y-2 pt-2">
+                        ${q.options.map((opt, idx) => `
+                            <button onclick="checkQuizAnswer(${idx})" id="quizOpt_${idx}" 
+                                class="w-full text-left p-3 rounded-xl border border-slate-200 dark:border-slate-700 hover:border-indigo-400 dark:hover:border-indigo-500 text-xs font-medium transition text-slate-700 dark:text-slate-200 bg-slate-50 dark:bg-slate-900/50">
+                                <span class="font-bold text-slate-400 mr-2">${String.fromCharCode(65 + idx)}.</span> ${opt}
+                            </button>
+                        `).join('')}
+                    </div>
+
+                    <div id="quizExplanation" class="hidden p-3 rounded-xl bg-indigo-50 dark:bg-indigo-950/40 border border-indigo-200 dark:border-indigo-800 text-xs text-indigo-900 dark:text-indigo-200">
+                        <span class="font-bold block mb-1">Explanation:</span>
+                        <p>${q.explanation}</p>
+                    </div>
+                </div>
+            `;
+
+            quizBody.innerHTML = html;
+        }
+
+        function checkQuizAnswer(selectedIndex) {
+            const q = activeQuizQuestions[currentQuizIndex];
+            const explanation = document.getElementById('quizExplanation');
+
+            q.options.forEach((_, idx) => {
+                const btn = document.getElementById(`quizOpt_${idx}`);
+                btn.disabled = true;
+                if (idx === q.answer) {
+                    btn.className = 'w-full text-left p-3 rounded-xl border border-emerald-500 text-xs font-semibold text-emerald-800 dark:text-emerald-200 bg-emerald-50 dark:bg-emerald-950/50';
+                } else if (idx === selectedIndex) {
+                    btn.className = 'w-full text-left p-3 rounded-xl border border-red-500 text-xs font-semibold text-red-800 dark:text-red-200 bg-red-50 dark:bg-red-950/50';
                 }
-            } else if (ph > 7.45) {
-                if (paco2 < 35) {
-                    diagnosis = 'Respiratory Alkalosis (e.g. Hyperventilation, PE, early Sepsis)';
-                } else if (hco3 > 26) {
-                    diagnosis = 'Metabolic Alkalosis (e.g. Vomiting, Diuretics)';
-                } else {
-                    diagnosis = 'Compensated Alkalemia';
-                }
+            });
+
+            if (explanation) explanation.classList.remove('hidden');
+        }
+
+        function nextQuizQuestion() {
+            if (currentQuizIndex < activeQuizQuestions.length - 1) {
+                currentQuizIndex++;
+                renderQuizQuestion();
             } else {
-                diagnosis = 'Normal pH (or Fully Compensated Acid-Base Disturbance)';
-            }
-
-            res.innerHTML = `<strong class="text-slate-900">ABG Interpretation:</strong> ${diagnosis}`;
-        }
-
-        function saveWeekNotes() {
-            if (!state.activeModalWeek) return;
-            const val = document.getElementById('modal-notes-input').value;
-            state.notes[state.activeModalWeek] = val;
-            saveState();
-        }
-
-        function openStatsModal() {
-            updateHeaderStats();
-            document.getElementById('stats-modal').classList.remove('hidden');
-            lucide.createIcons();
-        }
-
-        function closeStatsModal() {
-            document.getElementById('stats-modal').classList.add('hidden');
-        }
-
-        function confirmResetProgress() {
-            const ok = window.prompt("Type RESET to erase all saved topic and assignment progress:");
-            if (ok === 'RESET') {
-                state.completedTopics = {};
-                state.completedAssignments = {};
-                state.completedSessions = {};
-                state.notes = {};
-                saveState();
-                closeStatsModal();
-                if (state.activeModalWeek) closeWeekModal();
-                setViewMode(state.viewMode);
+                closeQuizModal();
             }
         }
 
-        window.onload = function() {
-            loadState();
-            setViewMode('grid');
-            updateHeaderStats();
-            lucide.createIcons();
-        };
+        // Notes Modal Logic
+        function openNotesModal() {
+            document.getElementById('notesModal').classList.remove('hidden');
+            loadModuleNote();
+        }
+
+        function closeNotesModal() {
+            document.getElementById('notesModal').classList.add('hidden');
+        }
+
+        function populateNoteSelect() {
+            const select = document.getElementById('noteWeekSelect');
+            select.innerHTML = SYLLABUS_DATA.map(w => `
+                <option value="${w.id}">${w.weekLabel} - ${w.system}</option>
+            `).join('');
+            select.value = currentActiveWeekId;
+        }
+
+        function loadModuleNote() {
+            const select = document.getElementById('noteWeekSelect');
+            const weekId = select.value;
+            const text = userNotes[weekId] || '';
+            document.getElementById('moduleNoteText').value = text;
+        }
+
+        function saveModuleNote() {
+            const select = document.getElementById('noteWeekSelect');
+            const weekId = select.value;
+            const text = document.getElementById('moduleNoteText').value;
+
+            userNotes[weekId] = text;
+            localStorage.setItem('med_user_notes', JSON.stringify(userNotes));
+
+            const status = document.getElementById('noteSaveStatus');
+            status.style.opacity = '1';
+            setTimeout(() => {
+                status.style.opacity = '0';
+            }, 2000);
+        }
+
+        // Reset All Tracker
+        function confirmReset() {
+            if (confirm("Are you sure you want to reset all topic progress and assignment submissions? This cannot be undone.")) {
+                completedTopics = {};
+                completedAssignments = {};
+                localStorage.removeItem('med_completed_topics');
+                localStorage.removeItem('med_completed_assignments');
+                renderModuleView(currentActiveWeekId);
+                renderWeekNavigation();
+                updateDashboardStats();
+            }
+        }
     </script>
 </body>
 </html>
