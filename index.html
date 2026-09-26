@@ -242,6 +242,9 @@
                         <button onclick="openNotesModal()" class="w-full py-2 px-3 bg-white dark:bg-slate-700 hover:bg-slate-50 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium shadow-sm transition flex items-center justify-center gap-2">
                             <i class="fa-solid fa-book-bookmark text-amber-500"></i> My Module Clinical Notes
                         </button>
+                        <button onclick="openSdlModal()" class="w-full py-2 px-3 bg-white dark:bg-slate-700 hover:bg-slate-50 border border-slate-200 dark:border-slate-600 text-slate-700 dark:text-slate-200 rounded-lg text-xs font-medium shadow-sm transition flex items-center justify-center gap-2">
+                            <i class="fa-solid fa-compass text-indigo-500"></i> SDL Methodology & How-To
+                        </button>
                     </div>
                 </div>
 
@@ -308,26 +311,67 @@
                     </div>
                 </div>
 
-                <div class="space-y-3">
-                    <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Select Week Module:</label>
-                        <select id="noteWeekSelect" onchange="loadModuleNote()" class="w-full p-2 text-xs bg-slate-100 dark:bg-slate-700 border border-slate-200 dark:border-slate-600 rounded-lg text-slate-800 dark:text-slate-200">
-                            <!-- Populated by JS -->
-                        </select>
+        <!-- Self-Directed Learning (SDL) Framework Modal -->
+        <div id="sdlModal" class="fixed inset-0 bg-slate-900/60 backdrop-blur-xs z-50 hidden flex items-center justify-center p-4">
+            <div class="bg-white dark:bg-slate-800 rounded-2xl max-w-2xl w-full p-6 shadow-2xl border border-slate-200 dark:border-slate-700 space-y-4 relative max-h-[90vh] overflow-y-auto custom-scrollbar">
+                <button onclick="closeSdlModal()" class="absolute top-4 right-4 text-slate-400 hover:text-slate-600 p-1">
+                    <i class="fa-solid fa-xmark text-lg"></i>
+                </button>
+                <div class="flex items-center gap-2.5">
+                    <div class="w-9 h-9 rounded-lg bg-indigo-100 dark:bg-indigo-900/50 text-indigo-600 dark:text-indigo-400 flex items-center justify-center text-lg">
+                        <i class="fa-solid fa-compass"></i>
                     </div>
                     <div>
-                        <label class="block text-xs font-semibold text-slate-600 dark:text-slate-300 mb-1">Personal Notes & Diagnostic Differentials:</label>
-                        <textarea id="moduleNoteText" rows="10" placeholder="Type key diagnostics, drug dosages, criteria, or reminders for this week's rotation..."
-                            class="w-full p-3 text-xs bg-slate-50 dark:bg-slate-900 border border-slate-200 dark:border-slate-700 rounded-lg focus:ring-2 focus:ring-sky-500 text-slate-800 dark:text-slate-200 custom-scrollbar font-mono leading-relaxed"></textarea>
+                        <h3 class="text-lg font-bold text-slate-800 dark:text-white">Self-Directed Learning (SDL) Framework</h3>
+                        <p class="text-xs text-slate-500 dark:text-slate-400">Step-by-step workflow guide for medical students</p>
                     </div>
                 </div>
 
-                <div class="flex justify-between items-center pt-2 border-t border-slate-100 dark:border-slate-700">
-                    <span id="noteSaveStatus" class="text-xs text-emerald-600 font-medium opacity-0 transition-opacity">Saved!</span>
-                    <div class="space-x-2">
-                        <button onclick="closeNotesModal()" class="px-4 py-2 bg-slate-100 dark:bg-slate-700 text-slate-700 dark:text-slate-300 rounded-lg text-xs font-semibold">Cancel</button>
-                        <button onclick="saveModuleNote()" class="px-4 py-2 bg-sky-600 hover:bg-sky-700 text-white rounded-lg text-xs font-semibold shadow-sm">Save Notes</button>
+                <div class="bg-indigo-50/80 dark:bg-indigo-950/30 border border-indigo-200 dark:border-indigo-800/60 p-3.5 rounded-xl text-xs text-indigo-950 dark:text-indigo-200 space-y-1">
+                    <span class="font-bold block text-indigo-700 dark:text-indigo-300">What is Self-Directed Learning in Clinical Rotations?</span>
+                    <p class="leading-relaxed">
+                        SDL empowers medical students to identify individual knowledge gaps encountered on ward rounds, investigate primary evidence, and formulate actionable diagnostic/therapeutic solutions beyond standard lectures.
+                    </p>
+                </div>
+
+                <div class="space-y-3">
+                    <h4 class="text-xs font-bold uppercase tracking-wider text-slate-400 border-b border-slate-100 dark:border-slate-700 pb-1">The 5-Step SDL Cycle</h4>
+                    
+                    <div class="grid grid-cols-1 sm:grid-cols-2 gap-3 text-xs">
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-1">
+                            <span class="px-2 py-0.5 rounded bg-sky-100 dark:bg-sky-950 text-sky-700 dark:text-sky-300 font-bold text-[10px] uppercase">Step 1</span>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Gap Identification</h5>
+                            <p class="text-slate-600 dark:text-slate-400">Note clinical uncertainties or complex cases during ward rounds and consultant teaching.</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-1">
+                            <span class="px-2 py-0.5 rounded bg-emerald-100 dark:bg-emerald-950 text-emerald-700 dark:text-emerald-300 font-bold text-[10px] uppercase">Step 2</span>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Formulate PICO Questions</h5>
+                            <p class="text-slate-600 dark:text-slate-400">Frame focused clinical queries (Population, Intervention, Comparison, Outcome).</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-1">
+                            <span class="px-2 py-0.5 rounded bg-purple-100 dark:bg-purple-950 text-purple-700 dark:text-purple-300 font-bold text-[10px] uppercase">Step 3</span>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Evidence Retrieval</h5>
+                            <p class="text-slate-600 dark:text-slate-400">Consult guidelines (ACC/AHA, GINA, KDIGO, NICE) and peer-reviewed databases (UpToDate, PubMed).</p>
+                        </div>
+
+                        <div class="p-3 bg-slate-50 dark:bg-slate-900/50 border border-slate-200 dark:border-slate-700 rounded-xl space-y-1">
+                            <span class="px-2 py-0.5 rounded bg-amber-100 dark:bg-amber-950 text-amber-700 dark:text-amber-300 font-bold text-[10px] uppercase">Step 4</span>
+                            <h5 class="font-bold text-slate-800 dark:text-slate-200">Critical Synthesis</h5>
+                            <p class="text-slate-600 dark:text-slate-400">Condense findings into 1-page clinical flowcharts, summaries, or flashcards.</p>
+                        </div>
                     </div>
+
+                    <div class="p-3 bg-indigo-50/50 dark:bg-indigo-950/20 border border-indigo-200/60 dark:border-indigo-800/40 rounded-xl text-xs space-y-1">
+                        <span class="px-2 py-0.5 rounded bg-indigo-600 text-white font-bold text-[10px] uppercase">Step 5</span>
+                        <h5 class="font-bold text-indigo-950 dark:text-indigo-200">Clinical Application & Peer Debrief</h5>
+                        <p class="text-slate-600 dark:text-slate-300">Present your synthesized SDL topic during weekly TBL / CBD sessions and discuss practical integration during attending physician rounds.</p>
+                    </div>
+                </div>
+
+                <div class="flex justify-end pt-2 border-t border-slate-100 dark:border-slate-700">
+                    <button onclick="closeSdlModal()" class="px-4 py-2 bg-indigo-600 hover:bg-indigo-700 text-white rounded-lg text-xs font-semibold shadow-sm">Got It</button>
                 </div>
             </div>
         </div>
@@ -387,6 +431,14 @@
                 tblFocus: 'Acute Coronary Syndromes management algorithms & antiplatelet/anticoagulation options.',
                 ccFocus: 'Cardiovascular examination (JVP evaluation, heart murmurs grading, peripheral pulses).',
                 cbdFocus: 'Management of acute heart failure presentation and cardiogenic shock.',
+                sdlFocus: {
+                    topic: 'Guideline-Directed Medical Therapy (GDMT) in HFrEF & Post-ACS Risk Reduction',
+                    steps: [
+                        'Review mechanisms & clinical trial evidence for quadruplet therapy (ARNI, Beta-blocker, MRA, SGLT2i).',
+                        'Construct an inpatient drug-titration roadmap specifying lab (eGFR, K+) and BP safety monitoring parameters.',
+                        'Summarize primary lipid-lowering targets (LDL goals & PCSK9 indications) for high-risk cardiovascular patients.'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'Which ECG finding is classic for acute inferior wall STEMI?',
@@ -446,6 +498,14 @@
                 tblFocus: 'Management of severe acute asthma vs acute exacerbation of COPD.',
                 ccFocus: 'Respiratory system exam (percussion notes, breath sounds, vocal fremitus, chest expansion).',
                 cbdFocus: 'Approach to a patient presenting with acute dyspnoea & pleuritic chest pain (PE vs Pneumothorax vs Pneumonia).',
+                sdlFocus: {
+                    topic: 'Mechanisms of Hypoxaemia, Non-Invasive Ventilation (NIV) & High-Flow Nasal Cannula (HFNC)',
+                    steps: [
+                        'Contrast V/Q mismatch, shunt, hypoventilation, and diffusion limitation on ABG parameters.',
+                        'Define clinical indications, contraindications, and initial settings for BiPAP vs CPAP vs HFNC.',
+                        'Outline clinical & arterial blood gas criteria signaling failure of NIV requiring endotracheal intubation.'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'According to Light\'s criteria, an effusion is exudative if fluid to serum protein ratio is higher than:',
@@ -496,6 +556,14 @@
                 tblFocus: 'Emergency indications for dialysis (AEIOU criteria: Acidosis, Electrolytes, Ingestion, Overload, Uraemia).',
                 ccFocus: 'Evaluation of volume status (edema, JVP, skin turgor) & Arteriovenous Fistula examination.',
                 cbdFocus: 'Unravelling nephrotic vs nephritic syndrome presentations in young vs adult patients.',
+                sdlFocus: {
+                    topic: 'Electrolyte & Acid-Base Disturbance Pathways: Hyponatraemia & Acute Hyperkalaemia',
+                    steps: [
+                        'Construct an algorithmic diagnostic approach to hyponatraemia based on plasma osmolality and volume status.',
+                        'Detail acute hyperkalaemia emergency management: Cardiac membrane stabilization (Calcium) vs intracellular shifting (Insulin/Salbutamol).',
+                        'Review Osmotic Demyelination Syndrome risks and safe sodium correction limits (<8-10 mmol/L in 24 hours).'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'RBC casts in urine urine microscopy are pathognomonic for:',
@@ -550,6 +618,14 @@
                 tblFocus: 'Management of Acute Upper GI Bleeding (Glasgow-Blatchford & Rockall scoring).',
                 ccFocus: 'Abdominal Examination (Ascites shift percussion, fluid wave, hepatosplenomegaly, stigmata of CLD).',
                 cbdFocus: 'Decompensated chronic liver disease presenting with hepatic encephalopathy or SBP.',
+                sdlFocus: {
+                    topic: 'Spontaneous Bacterial Peritonitis (SBP) & Hepatorenal Syndrome (HRS-AKI)',
+                    steps: [
+                        'Evaluate diagnostic paracentesis thresholds (PMN > 250/mm³) and SAAG calculation for portal hypertension.',
+                        'Outline diagnostic criteria for HRS-AKI and vasoconstrictor (Terlipressin) + Albumin resuscitation protocols.',
+                        'Identify primary and secondary antibiotic prophylaxis indications in decompensated cirrhosis.'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'An AST:ALT ratio > 2:1 is highly suggestive of:',
@@ -603,6 +679,14 @@
                 tblFocus: 'Insulin regimes selection (Basal-bolus vs Premixed) and oral hypoglycaemic agents in CKD.',
                 ccFocus: 'Thyroid gland palpation & diabetic foot ulcer risk examination.',
                 cbdFocus: 'Acute Addisonian crisis vs Thyroid Storm presentation and resuscitation.',
+                sdlFocus: {
+                    topic: 'Inpatient Glycaemic Management & Perioperative Corticosteroid Stress Dosing Protocols',
+                    steps: [
+                        'Compare sliding scale insulin vs basal-bolus regimens in hospitalized non-critically ill medical patients.',
+                        'Formulate stress-dose hydrocortisone protocols for surgical stress/sepsis in chronic steroid users.',
+                        'Detail a safe glucocorticoid tapering schedule to prevent secondary adrenal insufficiency.'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'Which oral hypoglycaemic class is contraindicated in patients with severe CKD due to risk of lactic acidosis?',
@@ -626,13 +710,13 @@
                     'Recognize multisystem autoimmune connective tissue diseases (SLE, RA) and emergency dermatological manifestations.'
                 ],
                 assignment: {
-                    title: 'Approach to Headache',
-                    description: 'Structured diagnostic workup for acute vs chronic headache: Red flags (SNOOP criteria), primary vs secondary causes.',
+                    title: 'Stroke Localisation',
+                    description: 'Structured neurological approach to localising ischaemic and haemorrhagic strokes based on vascular territories, clinical syndromes, and neuroanatomy.',
                     tasks: [
-                        'Evaluate headache red flags using SNOOP4 criteria (Systemic symptoms, Neurologic signs, Onset sudden/thunderclap, Older age, Pattern change).',
-                        'Differentiate Primary Headaches: Migraine, Tension-type, Cluster headache.',
-                        'Formulate emergency management for Secondary Headaches: Subarachnoid Haemorrhage (SAH), Meningitis, Temporal Arteritis (GCA), Raised ICP.',
-                        'Detail indication for immediate neuroimaging (CT/MRI Head) and Lumbar Puncture.'
+                        'Differentiate Anterior Circulation (ICA, MCA, ACA) vs Posterior Circulation (PCA, Vertebrobasilar, PICA, AICA) vascular territory syndromes.',
+                        'Identify classic clinical presentations: Cortical signs (aphasia, hemineglect), brainstem syndromes (crossed sensory/motor deficits, cranial nerve palsies), and lacunar syndromes.',
+                        'Apply the NIH Stroke Scale (NIHSS) to quantify neurological deficit and determine eligibility for IV thrombolysis and mechanical thrombectomy.',
+                        'Formulate hyperacute stroke management algorithms including door-to-needle time targets, neuroimaging protocols (NCCT vs CTA/CTP), and blood pressure thresholds.'
                     ]
                 },
                 topicsGrouped: [
@@ -677,6 +761,14 @@
                 tblFocus: 'Acute Stroke thrombolysis eligibility and immediate CT brain interpretation.',
                 ccFocus: 'Complete cranial nerves examination or upper/lower limb neurological examination.',
                 cbdFocus: 'Diagnostic approach to GBS vs Myasthenia Gravis presenting with acute weakness.',
+                sdlFocus: {
+                    topic: 'Autoimmune Rheumatic Crises & Emergency Dermatological / Neurological Presentations',
+                    steps: [
+                        'Differentiate Stevens-Johnson Syndrome / TEN from SSSS using SCORTEN and Nikolsky sign evaluation.',
+                        'Contrast Myasthenic Crisis vs Cholinergic Crisis presentation and bedside vital capacity testing.',
+                        'Review diagnostic criteria and urgent immunosuppression protocols for Lupus Nephritis & Giant Cell Arteritis (GCA).'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'Which nerve root / nerve is affected in Bell’s Palsy?',
@@ -745,6 +837,14 @@
                 tblFocus: 'Dengue Fluid resuscitation protocols & warning signs recognition.',
                 ccFocus: 'Lymph node examination (cervical, axillary, inguinal) & spleen palpation.',
                 cbdFocus: 'Workup of Pyrexia of Unknown Origin (PUO) in a returned traveler.',
+                sdlFocus: {
+                    topic: 'Antimicrobial Stewardship, Febrile Neutropaenia Pathways & Sepsis Biomarkers',
+                    steps: [
+                        'Calculate MASCC Risk Index score for patients presenting with post-chemotherapy febrile neutropaenia.',
+                        'Formulate empiric anti-pseudomonal beta-lactam regimens and define indications for vancomycin/antifungal addition.',
+                        'Evaluate clinical utility and diagnostic limits of Procalcitonin and CRP in guiding antibiotic de-escalation.'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'Which blood film feature is classic for Microangiopathic Haemolytic Anaemia (MAHA / TTP / DIC)?',
@@ -795,6 +895,14 @@
                 tblFocus: 'Initial Resuscitation in Septic Shock & Hour-1 Bundle execution.',
                 ccFocus: 'Resuscitation skills (Airway management, Bag-Valve-Mask ventilation, Defibrillation).',
                 cbdFocus: 'Systematic approach to the undifferentiated collapsed medical patient.',
+                sdlFocus: {
+                    topic: 'Vasoactive Inotropes, Vasopressors & Hemodynamic Stabilization in Undifferentiated Shock',
+                    steps: [
+                        'Compare receptor affinities (Alpha-1, Beta-1, Beta-2, V1) for Noradrenaline, Adrenaline, Vasopressin, Dobutamine.',
+                        'Differentiate hemodynamics (CO, SVR, CVP, ScvO2) across Septic, Cardiogenic, and Hypovolaemic shock.',
+                        'Establish 1-hour resuscitation targets (MAP ≥ 65 mmHg, urine output >0.5ml/kg/h, lactate clearance).'
+                    ]
+                },
                 quizzes: [
                     {
                         q: 'What is the first-line medication administered intramuscularly for Acute Anaphylaxis?',
@@ -1001,6 +1109,38 @@
                             </div>
                         </div>
                     </div>
+
+                    <!-- Weekly Self-Directed Learning (SDL) Focus Card -->
+                    ${week.sdlFocus ? `
+                        <div class="bg-gradient-to-r from-indigo-900/10 via-slate-900/5 to-indigo-900/10 dark:from-indigo-950/40 dark:to-slate-900/50 border border-indigo-200 dark:border-indigo-800/80 rounded-2xl p-4 sm:p-5 space-y-3">
+                            <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-2 border-b border-indigo-100 dark:border-indigo-800/50 pb-2.5">
+                                <div class="flex items-center space-x-2.5">
+                                    <div class="w-8 h-8 rounded-lg bg-indigo-600 text-white flex items-center justify-center text-sm shadow-xs">
+                                        <i class="fa-solid fa-compass"></i>
+                                    </div>
+                                    <div>
+                                        <span class="text-[10px] font-extrabold uppercase tracking-wider text-indigo-700 dark:text-indigo-300">Weekly Self-Directed Learning (SDL) Focus</span>
+                                        <h4 class="text-sm font-bold text-slate-800 dark:text-slate-100">${week.sdlFocus.topic}</h4>
+                                    </div>
+                                </div>
+                                <button onclick="openSdlModal()" class="inline-flex items-center text-xs font-bold text-indigo-600 dark:text-indigo-400 hover:underline">
+                                    How to do SDL <i class="fa-solid fa-arrow-right ml-1 text-[10px]"></i>
+                                </button>
+                            </div>
+
+                            <div class="space-y-1.5">
+                                <span class="text-[11px] font-semibold text-indigo-900 dark:text-indigo-300 uppercase tracking-wider">Recommended Execution Steps:</span>
+                                <ul class="space-y-1.5 text-xs text-slate-700 dark:text-slate-300">
+                                    ${week.sdlFocus.steps.map((step, idx) => `
+                                        <li class="flex items-start space-x-2.5">
+                                            <span class="w-4 h-4 rounded-full bg-indigo-100 dark:bg-indigo-900/60 text-indigo-700 dark:text-indigo-300 font-bold text-[10px] flex items-center justify-center shrink-0 mt-0.5">${idx + 1}</span>
+                                            <span class="leading-relaxed">${step}</span>
+                                        </li>
+                                    `).join('')}
+                                </ul>
+                            </div>
+                        </div>
+                    ` : ''}
 
                     <!-- Highlighted Weekly Assignment Submission Card -->
                     <div class="bg-gradient-to-br from-amber-50 to-orange-50 dark:from-amber-950/20 dark:to-orange-950/20 border-2 ${isAssignmentDone ? 'border-emerald-500/50' : 'border-amber-400 dark:border-amber-700'} rounded-2xl p-5 space-y-4 shadow-sm relative">
@@ -1331,6 +1471,15 @@
             setTimeout(() => {
                 status.style.opacity = '0';
             }, 2000);
+        }
+
+        // SDL Modal Logic
+        function openSdlModal() {
+            document.getElementById('sdlModal').classList.remove('hidden');
+        }
+
+        function closeSdlModal() {
+            document.getElementById('sdlModal').classList.add('hidden');
         }
 
         // Reset All Tracker
